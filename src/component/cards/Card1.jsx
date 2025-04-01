@@ -10,8 +10,6 @@ export default function Card1({ image, title, subtitle }) {
         className="w-[240px] h-[225px] object-cover rounded-t-lg md:rounded-none md:rounded-s-lg" 
         src={image}
         />
-        
-
       <div className="flex flex-col justify-between p-4 leading-normal">
         <h5 className="font-kh font-bold tracking-tight text-gray-900 dark:text-white mb-[8px]">
           {title}
