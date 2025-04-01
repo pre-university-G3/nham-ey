@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./component/cards/ProductCard";
-
+import Login from "./pages/login";
 function App() {
   return (
     <>
@@ -11,6 +11,9 @@ function App() {
         <ProductCard />
         <ProductCard />
       </div>
+
+<Login />
+
     </>
   );
 }
