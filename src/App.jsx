@@ -10,7 +10,6 @@ function App() {
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        
       </div>
     </>
   );
