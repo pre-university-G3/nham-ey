@@ -1,10 +1,10 @@
 import { Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from "flowbite-react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 export default function NavbarComponent() {
   return (
     <Navbar fluid rounded>
-      <NavbarBrand href="https://flowbite-react.com">
+      <NavbarBrand href="">
         <img src="/Assets/Nham-Ey_Png.png" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
       </NavbarBrand>
       <NavbarToggle />
