@@ -1,12 +1,17 @@
 import React from "react";
-import NavbarComponent from "./component/Layout/NavbarComponent";
 
+import RasturantCard from "./component/cards/RasturantCard";
+import "./App.css";
+import NavbarComponent from "./pages/Layout/NavbarComponent";
 
 function App() {
   return (
     <>
-      <NavbarComponent />
-      <RasturantCard />
+       <RasturantCard 
+        image="/Assets/Nham-Ey_Png.png"
+        title="Restaurant Name"
+        subtitle="Restaurant Address"
+      />
     </>
   );
 }
