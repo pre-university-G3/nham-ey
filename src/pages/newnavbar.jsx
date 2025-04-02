@@ -6,7 +6,7 @@ function NewNavbar() {
           <img
             src="./src/images/Nham-Ey.png"
             alt="nham ey logo"
-            className="max-h-[73px] "
+               className="max-h-[73px] "
           />
         </a>
 

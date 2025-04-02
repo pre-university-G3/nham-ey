@@ -3,6 +3,9 @@ import "./index.css";
 import FoodCard from "./component/cards/FoodCard";
 import Resturant from "./component/cards/Resturant";
 
+import RasturantCard from "./component/cards/RasturantCard";
+import NavbarComponent from "./pages/Layout/NavbarComponent";
+
 function App() {
   return (
     <>
@@ -52,6 +55,11 @@ function App() {
     subtitle="Tahaad Pettiford of the Auburn Tigers takes flight after drawing a foul against the Michigan Wolverines in the NCAA men's basketball tournament in Atlanta, Georgia"/>
     </div>
     </div>
+       <RasturantCard 
+        image="/Assets/Nham-Ey_Png.png"
+        title="Restaurant Name"
+        subtitle="Restaurant Address"
+      />
     </>
   );
 }
