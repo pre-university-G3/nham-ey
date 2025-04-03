@@ -1,7 +1,7 @@
 import React, { use } from 'react'
 import FoodCard from '../../component/cards/FoodCard'
 import { useEffect, useState } from 'react';
-
+import Banner from '../../component/cards/Banner';
 
 export default function Food() {
   const [food, setFood] = useState([]);
@@ -21,6 +21,7 @@ export default function Food() {
   return (
     <>
     <main>
+      <Banner/>
     <div className="text-center text-3xl font-bold flex justify-center items-center  bg-gray-100 py-4 rounded-lg shadow-md mb-20">
       <h1>Your Choice</h1>
       <span className="text-primary ml-2">is Here</span>
