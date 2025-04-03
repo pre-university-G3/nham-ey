@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Card1({ image, title, subtitle }) {
+export default function Resturant({ image, title, description }) {
   return (
     <div className="w-[611px]">
       <a href="resturantpage">
@@ -15,7 +15,7 @@ export default function Card1({ image, title, subtitle }) {
               {title}
             </h5>
             <small className="mb-3 font-kh text-[16px] text-[#333333] dark:text-gray-400">
-              {subtitle}
+              {description}
             </small>
             <hr className="text-gray-400 mt-[28px]" />
           </div>

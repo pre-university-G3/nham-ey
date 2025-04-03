@@ -1,5 +1,5 @@
 import React from 'react'
-import RestaurantCard from '../../component/cards/RasturantCard'
+import RestaurantCard from '../component/cards/RasturantCard'
 export default function Rasturant() {
 return (
   <main className=" mx-auto px-2 py-3 ">

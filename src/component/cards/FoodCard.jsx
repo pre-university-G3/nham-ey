@@ -1,4 +1,4 @@
-export default function Card2({ image, title, subtitle, price, rate }) {
+export default function Card2({ image, title, description, price, rate }) {
     return (
       <>
         <a href="">
@@ -29,7 +29,7 @@ export default function Card2({ image, title, subtitle, price, rate }) {
             <div className="p-4">
               <h3 className="text-[24px] font-bold text-[#494949] font-kh line-clamp-1">{title}</h3>
               <small className="text-sm text-gray-600 mt-1 text-[16px] line-clamp-3 leading-[18px]">
-                {subtitle}
+                {description}
               </small>
               
                 <div className="flex items-center justify-between mt-3">
