@@ -41,7 +41,6 @@ export default function NavbarComponent() {
               placeholder="Search"
               className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
             />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           </div>
 
           <NavLink to="/login" 
