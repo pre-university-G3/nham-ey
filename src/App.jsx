@@ -4,6 +4,7 @@ import Hello from "./components/buttons/Hello";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NewNavbar from "./layouts/Navbar";
+import Footer from "./layouts/Footer";
 import LoginButton from "./components/buttons/LoginButton";
 import RestaurantList from "./pages/RestaurantList";
 import FoodDetails from "./pages/FoodDetails";
@@ -193,6 +194,9 @@ function App() {
           </div>
         </div>
       </main>
+      <footer className=" mt-[50px]">
+        <Footer />
+      </footer>
 
       {/* <FoodDetails /> */}
 
