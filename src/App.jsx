@@ -1,13 +1,13 @@
 import React from "react";
 
 import RasturantCard from "./component/cards/RasturantCard";
-import NavbarComponent from "./pages/Layout/NavbarComponent";
+
 
 function App() {
   return (
     <>
-       <RasturantCard 
-        image="/Assets/Nham-Ey_Png.png"
+       <RasturantCard className="w-[611px] h-[225px] flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow-sm md:max-w-xl hover:bg-gray-100 "
+        image="/public/Assets/restaurant1.jpg"
         title="Restaurant Name"
         subtitle="Restaurant Address"
       />
