@@ -27,7 +27,7 @@ export default function Footer({ email }) {
         <div className="flex gap-5 justify-center mt-5 cursor-pointer">
           {/* icon fb */}
           <div>
-            <a href="">
+            <a href="#">
               <svg
                 width="24"
                 height="24"
@@ -44,7 +44,7 @@ export default function Footer({ email }) {
           </div>
           {/* icon tiktok */}
           <div>
-            <a href="">
+            <a href="#">
               <svg
                 width="22"
                 height="24"
@@ -61,7 +61,7 @@ export default function Footer({ email }) {
           </div>
           {/* icon instagram */}
           <div>
-            <a href="">
+            <a href="#">
               <svg
                 width="22"
                 height="22"
@@ -78,7 +78,7 @@ export default function Footer({ email }) {
           </div>
           {/* icon x */}
           <div>
-            <a href="">
+            <a href="#">
               <svg
                 width="22"
                 height="22"
