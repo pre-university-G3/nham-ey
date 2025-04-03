@@ -1,10 +1,10 @@
-function Login() {
+function Register() {
   return (
-    <div className="grid grid-cols-2 h-screen">
+    <div className="grid grid-cols-2 h-screen font-kh">
       <form className="w-[440px] h-auto mx-[100px] my-auto">
-        <h1 className="font-semibold text-xl mb-5">Welcome back!</h1>
+        <h1 className="font-semibold text-xl mb-5">Register Now!</h1>
         <p className="mb-5 text-sm text-gray-500">
-          Login to access your account.
+          Let's you all register to your personal account.
         </p>
 
         <div className="mb-5">
@@ -23,10 +23,39 @@ function Login() {
         </div>
         <div className="mb-5">
           <label
+            htmlFor="email"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            className="shadow-xs bg-bg-1 border border-hover-primary text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none"
+            placeholder="johndoe@email.com"
+            required
+          />
+        </div>
+        <div className="mb-5">
+          <label
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="shadow-xs bg-bg-1 border border-hover-primary text-gray-900 text-sm rounded-xl block w-full p-2.5 focus:outline-none"
+            placeholder="Enter Your Password"
+            required
+          />
+        </div>
+        <div className="mb-5">
+          <label
+            htmlFor="password"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
+            Confirm Password
           </label>
           <input
             type="password"
@@ -47,41 +76,37 @@ function Login() {
               required
             />
           </div>
-          <span className="flex justify-between w-full">
-            <label
-              htmlFor="Remember me"
-              className="ms-2 text-xs font-medium text-gray-900"
-            >
-              Remember me
-            </label>
-
-            <a className="text-xs text-primary" href="#">
-              Forgot Password
+          <label
+            htmlFor="Remember me"
+            className="ms-2 text-xs font-medium text-gray-900"
+          >
+            I agree to the{" "}
+            <a href="#" className=" text-blue-500">
+              term & policy
             </a>
-          </span>
+          </label>
         </div>
         <button
           type="submit"
           className="w-full text-bg-1 bg-hover-primary hover:bg-primary focus:outline-none font-medium rounded-xl text-xl px-[10px] py-[5px] text-center"
         >
-          Login
+          Create Account
         </button>
 
         <p className="text-sm text-gray-900 font-medium text-center my-5">
-          Don't have an account?{" "}
+          Already have an account?
           <a className="text-primary" href="#">
-            Register
+            Login
           </a>
         </p>
       </form>
 
       <img
-        src="./src/images/login.png"
+        src="./src/images/register.png"
         alt="login"
         className="w-full h-screen object-cover"
       />
     </div>
   );
 }
-
-export default Login;
+export default Register;

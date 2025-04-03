@@ -3,6 +3,7 @@
 @source "../.flowbite-react/class-list.json";
 
 @theme {
+  --font-kh: "Roboto", sans-serif;
   --color-primary: #5b913b;
   --color-hover-primary: #77b254;
   --color-bg-1: #fafaf9;
