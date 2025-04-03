@@ -1,7 +1,5 @@
 "use client"
 
-import { useFormik } from "formik"
-import * as Yup from "yup"
 
 export default function Register() {
   // Define validation schema with Yup

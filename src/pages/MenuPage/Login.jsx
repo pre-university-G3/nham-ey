@@ -1,7 +1,5 @@
 "use client"
 
-import { useFormik } from "formik"
-import * as Yup from "yup"
 
 export default function Login() {
   const validationSchema = Yup.object({
