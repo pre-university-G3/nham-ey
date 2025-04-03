@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Footer({email}) {
+export default function Footer({ email }) {
   return (
     <>
       <footer className="bg-hover-primary w-auto h-[400px] ">
