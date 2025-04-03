@@ -1,7 +1,7 @@
 export default function Banner({ image }) {
   return (
     <>
-      <div className="mx-auto w-[1300px] my-10 p-10 bg-primary text-white flex items-center justify-between rounded-lg shadow-lg">
+      <div className="mx-50 my-10 p-10 bg-primary text-white flex items-center justify-between rounded-lg shadow-lg">
         <div>
           <h1 className="text-xl font-bold uppercase">
             Savor the True Taste of{" "}
