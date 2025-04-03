@@ -1,60 +1,59 @@
 import React from 'react';
-import { NavLink } from 'react-router';
-
-import { Navbar, NavbarBrand, NavbarToggle, NavbarCollapse } from 'flowbite-react';
+import { NavLink } from 'react-router-dom';
+import { Search } from 'lucide-react';
 
 export default function NavbarComponent() {
   return (
-    <header className="bg-white shadow-sm mx-auto">
-      <div className=" px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <NavLink to="/">
-            <img src="/final-project-pug3/public/Assets/Nham-Ey_Png.png" alt="Logo" width={40} height={40} className="rounded-full" />
+    <header className="bg-white border-b border-gray-200">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-8">
+          <NavLink to="/" className="flex items-center gap-2">
+            <div className="w-20 h-20 relative">
+              <img
+                src="/Assets/Nham-Ey_Png.png?height=40&width=40"
+                alt="Logo"
+                className="object-cover w-full h-full rounded-full"
+               
+              />
+            </div>
+            
           </NavLink>
-        </div>
-        <nav className="hidden md:flex items-center gap-8">
-          <NavLink to="/" className="text-gray-700 hover:text-green-500">
-            Home
-          </NavLink>
-          <NavLink to="/food" className="text-gray-700 hover:text-green-500">
-            Food
-          </NavLink>
-          <NavLink to ="/restaurant" className="text-gray-700 hover:text-green-500">
-            Restaurant
-          </NavLink>
-          <NavLink to ="/about" className="text-gray-700 hover:text-green-500">
-            About Us
-          </NavLink>
-        </nav>
 
-        <div className="flex items-center gap-3">
+          <nav className="hidden md:flex items-center gap-8 text-2xl font-semibold">
+            <NavLink to="/" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+              Home
+            </NavLink>
+            <NavLink to="/food" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+              Food
+            </NavLink>
+            <NavLink to="/restaurant" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+              Restaurant
+            </NavLink>
+            <NavLink to="/about" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+              About Us
+            </NavLink>
+          </nav>
+        </div>
+
+        <div className="flex items-center gap-4">
           <div className="relative">
             <input
               type="text"
               placeholder="Search"
-              className="pl-8 pr-3 py-1 rounded-md border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+              className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
             />
-            <svg
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           </div>
 
-          <NavLink to="/login" className="text-sm text-gray-700 hover:text-green-500">
+          <NavLink to="/login" 
+          className="bg-gray-400  text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors">
             Log In
           </NavLink>
 
-          <NavLink to="/register" className="text-sm bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600">
+          <NavLink
+            to="/register"
+            className="bg-primary  text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors"
+          >
             Register
           </NavLink>
         </div>
