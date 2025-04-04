@@ -22,7 +22,7 @@ return (
          <h1>Rasturant</h1>
          <span className="text-primary ml-2">listing</span>
     </div>
-        <section className="mx-50 grid grid-cols-2  lg:grid-cols-2 gap-5 px-4">
+        <section className="mx-50 grid grid-cols-2  lg:grid-cols-2 gap-10 px-4">
         {Rasturant.map((Rasturant) => (
           < RestaurantCard
             key={Rasturant.id}
@@ -32,6 +32,7 @@ return (
           />
         ))}
         </section>  
+        
         
       </main>
 )

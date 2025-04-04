@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { Search } from 'lucide-react';
 
 export default function NavbarComponent() {
@@ -20,16 +20,16 @@ export default function NavbarComponent() {
           </NavLink>
 
           <nav className="hidden md:flex items-center gap-8 text-2xl font-semibold">
-            <NavLink to="/" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+            <NavLink to="/" className={({ isActive }) => isActive ? "text-primary  " : "text-gray-700  hover:text-primary"}>
               Home
             </NavLink>
-            <NavLink to="/food" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+            <NavLink to="/food" className={({ isActive }) => isActive ? "text-primary " : "text-gray-700  hover:text-primary"}>
               Food
             </NavLink>
-            <NavLink to="/restaurant" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+            <NavLink to="/restaurant" className={({ isActive }) => isActive ? "text-primary  " : "text-gray-700  hover:text-primary"}>
               Restaurant
             </NavLink>
-            <NavLink to="/about" className={({ isActive }) => isActive ? "text-green-500 " : "text-gray-700  hover:text-green-500"}>
+            <NavLink to="/about" className={({ isActive }) => isActive ? "text-primary " : "text-gray-700  hover:text-primary"}>
               About Us
             </NavLink>
           </nav>
@@ -45,17 +45,11 @@ export default function NavbarComponent() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           </div>
 
-          <NavLink to="/login" 
-          className="bg-gray-400  text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-            Log In
+          <NavLink to="/wishlist" 
+          className="bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+            Wishlist
           </NavLink>
 
-          <NavLink
-            to="/register"
-            className="bg-primary  text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors"
-          >
-            Register
-          </NavLink>
         </div>
       </div>
     </header>
