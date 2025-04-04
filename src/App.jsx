@@ -10,8 +10,6 @@ export default function App() {
   const [Rastaurant, setRastaurant] = useState([]);
   const [trendingRastaurant, setTrendingRastaurant] = useState([]);
 
-
-
   async function getFood() {
     try {
       setIsLoading(true);
@@ -44,59 +42,87 @@ export default function App() {
   }
 
   const base_url = `https://nham-ey.istad.co`;
-  
+
   return (
     <>
       <main>
-      <section className="w-full h-screen relative overflow-hidden bg-[#E5F7DC] flex items-center">
-  {/* Background Shape (Optional) */}
-  <div className="absolute top-0 left-0 w-full h-full bg-green-200 rounded-br-[50%] md:rounded-br-[40%] lg:rounded-br-[30%]"></div>
+        <section className="w-full h-screen relative overflow-hidden bg-[#E5F7DC] flex items-center">
+          {/* Background Shape (Optional) */}
+          <div className="absolute top-0 left-0 w-full h-full bg-green-200 rounded-br-[50%] md:rounded-br-[40%] lg:rounded-br-[30%]"></div>
 
-  {/* Banner Content */}
-  <div className="relative z-10 flex flex-col items-start px-8 md:px-16 lg:px-32 w-1/2">
-    <h1 className="text-4xl md:text-6xl font-bold text-gray-900 uppercase tracking-wide leading-tight">
-      Experience Authentic
-    </h1>
+          {/* Banner Content */}
+          <div className="relative z-10 flex flex-col items-start px-8 md:px-16 lg:px-32 w-1/2">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 uppercase tracking-wide leading-tight">
+              Experience Authentic
+            </h1>
 
-    <div className="flex items-center mt-2">
-      <div className="w-16 h-1 bg-primary mr-4"></div>
-      <h2 className="text-2xl md:text-3xl font-bold text-primary uppercase">
-        Cambodian Cuisine
-      </h2>
-    </div>
+            <div className="flex items-center mt-2">
+              <div className="w-16 h-1 bg-primary mr-4"></div>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary uppercase">
+                Cambodian Cuisine
+              </h2>
+            </div>
 
-    <p className="text-lg md:text-xl text-gray-800 mt-4">
-      Discover the rich flavors and traditions of Cambodia at Nham Ey.
-    </p>
+            <p className="text-lg md:text-xl text-gray-800 mt-4">
+              Discover the rich flavors and traditions of Cambodia at Nham Ey.
+            </p>
 
-    {/* Buttons */}
-    <div className="mt-6 flex gap-4">
-      <button className="bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary-dark transition">
-        Explore Foods
-      </button>
-      <button className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-900 transition">
-        Find Restaurant
-      </button>
-    </div>
-  </div>
+            {/* Buttons */}
+            <div className="mt-6 flex gap-4">
+              <button className="w-[159px] h-[46px] bg-hover-primary text-white text-xl rounded-xl hover:bg-primary">
+                Explore Foods
+              </button>
+              <button className="w-[183px] h-[46px] border-2 bg-bg-1 border-hover-primary rounded-xl text-xl text-zinc-800 hover:bg-hover-primary hover:text-white">
+                Find Restaurant
+              </button>
+            </div>
+          </div>
 
-  {/* Banner Image */}
-  <div className="relative w-1/2 flex justify-center">
-    <img
-      src="/public/Assets/salad-splah-explosion-transparent-background_1259336-338-removebg-preview.png"
-      alt="Cambodian Food"
-      className="w-full max-w-lg md:max-w-xl lg:max-w-2xl object-contain"
-    />
-  </div>
-</section>
-      
+          {/* Banner Image */}
+          <div className="relative w-1/2 flex justify-center">
+            <img
+              src="/public/Assets/salad-splah-explosion-transparent-background_1259336-338-removebg-preview.png"
+              alt="Cambodian Food"
+              className="w-full max-w-lg md:max-w-xl lg:max-w-2xl object-contain"
+            />
+          </div>
+        </section>
+
         {/* Rest of your content remains the same */}
+
+        {/*  TRENDING */}
         <section className="mb-12">
           <div className="text-center text-3xl font-bold flex justify-center items-center py-4 my-10">
-            <h1>Trending</h1>
-            <span className="text-primary ml-2">food</span>
+            <div className="text-center">
+              <h1 className="text-primary text-[32px] font-bold">
+                TRENDING FOOD
+              </h1>
+              <div className="flex justify-center mt-2">
+                <svg
+                  width="372"
+                  height="4"
+                  viewBox="0 0 372 4"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line
+                    x1="0.236328"
+                    y1="2.25"
+                    x2="185.666"
+                    y2="2.25"
+                    stroke="black"
+                    strokeWidth="3"
+                  />
+                  <path
+                    d="M185.664 2.25H371.093"
+                    stroke="#75A511"
+                    strokeWidth="3"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
-          <div className="mx-50 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="mx-[100px] flex flex-wrap justify-center md:grid-cols-2 lg:grid-cols-3 gap-4">
             {trendingFood.map((food) => (
               <FoodCard
                 key={`trending-${food.id}`}
