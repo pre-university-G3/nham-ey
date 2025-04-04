@@ -2,13 +2,13 @@ import React from "react";
 import "./index.css";
 import FoodCard from "./component/cards/FoodCard";
 import Restaurant from "./component/cards/Resturant";
-import Catagories from "./component/cards/Catagories"
+import Catagories from "./component/cards/Catagories";
+import FoodDetails from "./pages/Foodpage/FoodDetails";
 
 function App() {
   return (
     <>
-  
-  <main>
+      <main>
         {/* BANNER */}
         <section className=" mx-[100px] my-[100px]">
           <h1 className=" text-[60px] text-zinc-700 font-bold ">
@@ -59,11 +59,11 @@ function App() {
           </div>
           <div className=" flex justify-center my-[50px]">
             <div className="grid grid-cols-4 gap-[30px]">
-            <Catagories
-              image="https://images.deliveryhero.io/image/fd-kh/Products/3568351.jpg?width=%s"
-              title="Breakfast"
-            />
-              </div>
+              <Catagories
+                image="https://images.deliveryhero.io/image/fd-kh/Products/3568351.jpg?width=%s"
+                title="Breakfast"
+              />
+            </div>
           </div>
         </div>
 
@@ -93,17 +93,16 @@ function App() {
               />
             </svg>
           </div>
-            </div>
-          <div className="flex flex-wrap justify-center mt-10 ">
-            <div className="grid grid-cols-2 gap-[20px]">
-
+        </div>
+        <div className="flex flex-wrap justify-center mt-10 ">
+          <div className="grid grid-cols-2 gap-[20px]">
             <Restaurant
               image="https://images.deliveryhero.io/image/fd-kh/Products/3568351.jpg?width=%s"
               title="Sofitel Hotel & Restaurant"
               description="Sofitel Phnom Penh Phokeethra is a luxury hotel offering elegant rooms, fine dining, and premium amenities in a prime location."
             />
-              </div>
           </div>
+        </div>
 
         {/* BANNER */}
         <div className=" bg-bg-2 0 w-full h-[193px] my-[50px] flex ">
@@ -152,18 +151,28 @@ function App() {
               />
             </svg>
           </div>
-            </div>
-          <div className=" flex flex-wrap justify-center mt-10">
-            <div className="grid grid-cols-3 gap-[20px]">
+        </div>
+        <div className=" flex flex-wrap justify-center mt-10">
+          <div className="grid grid-cols-3 gap-[20px]">
             <FoodCard
-            image="https://media.istockphoto.com/id/1327486548/photo/nigerian-okra-soup-with-garri.jpg?s=612x612&w=0&k=20&c=AW5kYEgtpxoWw1198IiLQ-cyDj0ieCH9XWTiZU-ZKWI="
-            title="Somlor Proher"
-            description="I love this food"
-            price="2"
-            rate="4" />
-            </div>
+              image="https://media.istockphoto.com/id/1327486548/photo/nigerian-okra-soup-with-garri.jpg?s=612x612&w=0&k=20&c=AW5kYEgtpxoWw1198IiLQ-cyDj0ieCH9XWTiZU-ZKWI="
+              title="Somlor Proher"
+              description="I love this food"
+              price="2"
+              rate="4"
+            />
           </div>
+        </div>
       </main>
+       
+        <FoodDetails
+        image="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"
+        title="Amok"
+        price="2.5"
+        description="Khmer Noodle (Nom Banh Chok) is a traditional Cambodian dish made from thin, hand-pressed rice noodles served with a fragrant fish-based curry sauce and fresh vegetables. This beloved dish is often eaten for breakfast or lunch and is known for its light yet flavorful taste.
+The most popular version features a green curry sauce made with freshwater fish, lemongrass, kaffir lime leaves, turmeric, and coconut milk, creating a fragrant and slightly creamy broth. The noodles are topped with an array of fresh herbs and vegetables such as banana blossoms, bean sprouts, cucumber, water lily stems, and basil, adding crispness and freshness to every bite.
+There are also regional variations, including a red curry version with coconut milk or a simpler, fermented fish-based sauce. In Cambodia, street vendors and local markets often serve Nom Banh Chok, making it an iconic and accessible dish that reflects the country’s rich culinary heritage."/>
+         
     </>
   );
 }
