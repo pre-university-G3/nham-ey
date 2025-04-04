@@ -5,7 +5,7 @@ export default function RestaurantCard({ image_url, name , description }) {
       <>
     <a href="resturantpage">
 
-    <div className="w-[611px] h-[225px] flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg shadow-sm md:max-w-xl hover:bg-gray-100 ">
+    <div className="w-[611px] h-[225px] flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-lg hover:ring-hover-primary hover:ring-2 hover:scale-101 transform transition duration-200 shadow-sm md:max-w-xl hover:bg-gray-100 ">
       <img 
         className="w-[240px] h-[225px] object-cover border-gray-200 border rounded-t-lg md:rounded-none md:rounded-s-lg" 
         src={image_url}

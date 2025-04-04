@@ -72,8 +72,8 @@ export default function FoodCard({ id, image_url, name, description, price, aver
 
   return (
     <a href="#">
-      <div className="w-[400px] h-[419px] bg-white rounded-2xl shadow-sm box-border mb-10">
-        <div className="relative px-[20px] py-[20px] bg-[#fafaf9]">
+      <div className="w-[400px] h-[419px] bg-white rounded-xl shadow-sm box-border mb-10 hover:ring-hover-primary hover:ring-2 hover:scale-101 transform transition duration-200">
+        <div className="relative px-[20px] py-[20px] bg-[#fafaf9] rounded-2xl">
           <img className="w-[362px] h-[203px] object-cover rounded-t-lg" src={image_url} alt={name} />
           {/* Heart Wishlist Button */}
           <button
