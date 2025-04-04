@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function RestaurantCard({ image_url, name , description }) {
+export default function ResturantCard({ image_url, name , description }) {
   return (
       <>
     <a href="resturantpage">

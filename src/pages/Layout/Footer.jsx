@@ -3,29 +3,32 @@ import React from "react";
 export default function Footer({ email }) {
   return (
     <>
-      <footer className="bg-hover-primary w-auto h-[400px] ">
-        <div className="justify-items-center text-center pt-25">
-          <h1 className=" text-zinc-900 font-bold text-2xl pb-3">Stay updated with us!</h1>
+      <footer className="bg-hover-primary w-auto py-15">
+        <div className="justify-items-center text-center">
+          <h1 className="text-zinc-900 font-bold text-2xl pb-2">
+            Stay updated with us!
+          </h1>
           <p className="font-semibold text-zinc-800">
-          Discover the best dining experiences and find recommendations from real food lovers.{" "}
-            <br />Eat, explore, enjoy!
+            Discover the best dining experiences and find recommendations from
+            real food lovers. <br />
+            Eat, explore, enjoy!
           </p>
         </div>
-        <div className="flex justify-center mt-5 gap-4">
+        <div className="flex justify-center mt-4 gap-4">
           <input
-            className="px-5 py-2  bg-white rounded-[10px] w-95 active:outline"
+            className="px-4 py-2 bg-white rounded-[10px] w-95 active:outline"
             type="email"
             placeholder="Your email address"
             value={email}
           />
           <div>
-            <button className=" hover:bg-primary hover:outline hover:outline-white hover:text-white transition duration-300 px-5 py-2  bg-white rounded-[10px] w-30 cursor-pointer">
+            <button className="hover:bg-primary hover:outline hover:outline-white hover:text-white transition duration-300 px-4 py-2 bg-white rounded-[10px] w-30 cursor-pointer">
               Subscribe
             </button>
           </div>
         </div>
-        <div className="flex gap-5 justify-center mt-5 cursor-pointer">
-          {/* icon fb */}
+        <div className="flex gap-5 justify-center mt-4 cursor-pointer">
+          {/* Social media icons */}
           <div>
             <a href="#">
               <svg
@@ -35,6 +38,7 @@ export default function Footer({ email }) {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
+                {/* Facebook icon */}
                 <path
                   d="M23.25 12C23.25 5.57812 18.0469 0.375 11.625 0.375C5.20312 0.375 0 5.57812 0 12C0 17.8022 4.25109 22.6116 9.80859 23.4844V15.3605H6.85547V12H9.80859V9.43875C9.80859 6.52547 11.543 4.91625 14.1994 4.91625C15.4716 4.91625 16.8019 5.14313 16.8019 5.14313V8.0025H15.3356C13.8919 8.0025 13.4414 8.89875 13.4414 9.81797V12H16.6655L16.1498 15.3605H13.4414V23.4844C18.9989 22.6116 23.25 17.8022 23.25 12Z"
                   fill="black"
@@ -42,7 +46,7 @@ export default function Footer({ email }) {
               </svg>
             </a>
           </div>
-          {/* icon tiktok */}
+          {/* Other icons */}
           <div>
             <a href="#">
               <svg
@@ -59,7 +63,6 @@ export default function Footer({ email }) {
               </svg>
             </a>
           </div>
-          {/* icon instagram */}
           <div>
             <a href="#">
               <svg
@@ -76,7 +79,6 @@ export default function Footer({ email }) {
               </svg>
             </a>
           </div>
-          {/* icon x */}
           <div>
             <a href="#">
               <svg
