@@ -14,7 +14,7 @@ export default function Resturant({ image, title, description }) {
             <h5 className="font-kh text-[20px] font-bold tracking-tight text-[#333333] dark:text-white mb-[6px]">
               {title}
             </h5>
-            <small className="mb-3 font-kh text-[16px] text-[#333333] dark:text-gray-400">
+            <small className="mb-3 font-kh text-[16px] text-[#333333] dark:text-gray-400​ line-clamp-3">
               {description}
             </small>
             <hr className="text-gray-400 mt-[28px]" />

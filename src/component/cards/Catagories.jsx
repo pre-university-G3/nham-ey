@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FoodCard({ image, title}) {
+export default function Catagories({ image, title}) {
   return (
     <button 
       className="w-[231px] h-[254px] bg-white rounded-2xl overflow-hidden border border-gray-200"
