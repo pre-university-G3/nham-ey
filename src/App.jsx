@@ -3,6 +3,9 @@ import "./index.css";
 import FoodCard from "./component/cards/FoodCard";
 import { useEffect, useState } from "react";
 import RastaurantCard from "./component/cards/RasturantCard";
+import FoodCategory from "./component/cards/FoodCategory";
+
+
 export default function App() {
   const [food, setFood] = useState([]);
   const [trendingFood, setTrendingFood] = useState([]);
@@ -89,6 +92,70 @@ export default function App() {
         </section>
 
         {/* Rest of your content remains the same */}
+
+        {/* CATEGORY */}
+        <div className="text-center">
+          <h1 className="text-primary text-[32px] font-bold">OUR CATEGORIES</h1>
+          <div className="flex justify-center mt-2">
+            <svg
+              width="372"
+              height="4"
+              viewBox="0 0 372 4"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="0.236328"
+                y1="2.25"
+                x2="185.666"
+                y2="2.25"
+                stroke="black"
+                strokeWidth="3"
+              />
+              <path
+                d="M185.664 2.25H371.093"
+                stroke="#75A511"
+                strokeWidth="3"
+              />
+            </svg>
+          </div>
+          <div className=" flex justify-center gap-10 my-[50px]">
+            <FoodCategory
+              image="../src/images/food/breakfast.png"
+              title="Breakfast"
+            />
+            <FoodCategory image="../src/images/food/lunch.png" title="Lunch" />
+            <FoodCategory
+              image="../src/images/food/dessert.png"
+              title="Dessert"
+            />
+            <FoodCategory
+              image="../src/images/food/fast_food.png"
+              title="Fast Food"
+            />
+          </div>
+        </div>
+
+         {/* BANNER */}
+         <div className=" bg-bg-2 0 w-full h-[193px] my-[50px] flex ">
+          <div className=" mx-[200px]">
+            <span className=" flex items-baseline gap-3">
+              <h1 className=" inline text-[60px] text-primary font-bold">
+                Good Food
+              </h1>
+              <h1 className=" inline text-[32px] font-bold text-zinc-700">
+                Great time!
+              </h1>
+            </span>
+            <p className="w-[500px] h-[68px] break-word text-sm text-zinc-600">
+              Enjoy your day with many of foods, Find your favouritre foods, Our
+              site give you info of the foods whom you like.
+            </p>
+          </div>
+          <div>
+            <img src="../src/images/img-style.png" />
+          </div>
+        </div>
 
         {/*  TRENDING */}
         <section className="mb-12">
