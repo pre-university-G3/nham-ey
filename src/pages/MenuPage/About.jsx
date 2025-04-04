@@ -153,9 +153,9 @@ export default function About() {
           <div className="w-full flex justify-center mt-[100px]">
             <div className="grid grid-cols-3 gap-x-[100px] gap-y-[80px] place-items-center">
               <MentorCard
-                image="/src/images/Cher-Phea.jpg"
-                role="Mentor"
-                name="Sin Sreyphea"
+                image="/src/images/IMG_0215.JPG"
+                role="Team Leader"
+                name="Min Phanith"
               />
               <MentorCard
                 image="/src/images/Cher-Cheat.JPG"
