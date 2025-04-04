@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import RastaurantCard from "./component/cards/RasturantCard";
 import FoodCategory from "./component/cards/FoodCategory";
 
-
 export default function App() {
   const [food, setFood] = useState([]);
   const [trendingFood, setTrendingFood] = useState([]);
@@ -136,8 +135,8 @@ export default function App() {
           </div>
         </div>
 
-         {/* BANNER */}
-         <div className=" bg-bg-2 0 w-full h-[193px] my-[50px] flex ">
+        {/* BANNER */}
+        <div className=" bg-bg-2 0 w-full h-[193px] my-[50px] flex ">
           <div className=" mx-[200px]">
             <span className=" flex items-baseline gap-3">
               <h1 className=" inline text-[60px] text-primary font-bold">
@@ -189,19 +188,21 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="mx-[100px] flex flex-wrap justify-center md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {trendingFood.map((food) => (
-              <FoodCard
-                key={`trending-${food.id}`}
-                name={food.name}
-                price={food.price}
-                image_url={`${base_url}${food.image_url}`}
-                description={food.description}
-                average_rating={food.average_rating}
-                category={food.category}
-                isTrending={true}
-              />
-            ))}
+          <div className="  flex flex-wrap justify-center">
+            <div className="mx-[100px] grid grid-cols-3  md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {trendingFood.map((food) => (
+                <FoodCard
+                  key={`trending-${food.id}`}
+                  name={food.name}
+                  price={food.price}
+                  image_url={`${base_url}${food.image_url}`}
+                  description={food.description}
+                  average_rating={food.average_rating}
+                  category={food.category}
+                  isTrending={true}
+                />
+              ))}
+            </div>
           </div>
         </section>
       </main>

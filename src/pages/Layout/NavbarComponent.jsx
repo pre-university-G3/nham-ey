@@ -40,15 +40,15 @@ export default function NavbarComponent() {
             <input
               type="text"
               placeholder="Search"
-              className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+              className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-hover-primary focus:border-hover-primary"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           </div>
 
-          <NavLink to="/wishlist" 
+          {/* <NavLink to="/wishlist" 
           className="bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors">
             Wishlist
-          </NavLink>
+          </NavLink> */}
 
         </div>
       </div>
