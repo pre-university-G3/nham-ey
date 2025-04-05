@@ -1,57 +1,70 @@
-import React from 'react';
-import { NavLink } from 'react-router';
-import { Search } from 'lucide-react';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'; // Make sure it's from react-router-dom
+import { Menu, X } from 'lucide-react';
 
 export default function NavbarComponent() {
-  return (
-    <header className="bg-white border-b border-gray-200">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <NavLink to="/" className="flex items-center gap-2">
-            <div className="w-20 h-20 relative">
-              <img
-                src="/Assets/Nham-Ey_Png.png?height=40&width=40"
-                alt="Logo"
-                className="object-cover w-full h-full rounded-full"
-               
-              />
-            </div>
-            
-          </NavLink>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-          <nav className="hidden md:flex items-center gap-8 text-2xl font-semibold">
-            <NavLink to="/" className={({ isActive }) => isActive ? "text-primary  " : "text-gray-700  hover:text-primary"}>
+  return (
+    <header className="bg-white border-b border-gray-200 relative">
+      <div className="container mx-auto px-4 py-1 flex items-center justify-between relative">
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center gap-2 z-20">
+          <div className="w-14 h-14 sm:w-20 sm:h-20 relative">
+            <img
+              src="/Assets/Nham-Ey_Png.png?height=40&width=40"
+              alt="Logo"
+              className="object-cover w-full h-full rounded-full"
+            />
+          </div>
+        </NavLink>
+
+        {/* Centered nav */}
+        <nav className="hidden md:flex gap-10 text-lg font-semibold absolute left-1/2 transform -translate-x-1/2">
+          <NavLink to="/" className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
+            Home
+          </NavLink>
+          <NavLink to="/food" className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
+            Food
+          </NavLink>
+          <NavLink to="/restaurant" className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
+            Restaurant
+          </NavLink>
+          <NavLink to="/about" className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
+            About Us
+          </NavLink>
+        </nav>
+
+        {/* Mobile Menu*/}
+        <div className="md:hidden z-20">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-gray-700 focus:outline-none"
+          >
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile nav */}
+      {menuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 px-5 pb-4">
+          <nav className="flex flex-col gap-3 text-lg font-medium text-left">
+            <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
               Home
             </NavLink>
-            <NavLink to="/food" className={({ isActive }) => isActive ? "text-primary " : "text-gray-700  hover:text-primary"}>
+            <NavLink to="/food" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
               Food
             </NavLink>
-            <NavLink to="/restaurant" className={({ isActive }) => isActive ? "text-primary  " : "text-gray-700  hover:text-primary"}>
+            <NavLink to="/restaurant" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
               Restaurant
             </NavLink>
-            <NavLink to="/about" className={({ isActive }) => isActive ? "text-primary " : "text-gray-700  hover:text-primary"}>
+            <NavLink to="/about" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary" : "text-gray-700 hover:text-primary"}>
               About Us
             </NavLink>
           </nav>
         </div>
-
-        {/* <div className="flex items-center gap-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-hover-primary focus:border-hover-primary"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-          </div>
-
-          <NavLink to="/wishlist" 
-          className="bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-            Wishlist
-          </NavLink>
-
-        </div> */}
-      </div>
+      )}
     </header>
   );
 }

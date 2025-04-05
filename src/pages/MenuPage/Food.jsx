@@ -48,7 +48,7 @@ export default function Food() {
   }, [selectedMealType, searchTerm, food]);
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="mt-[10px]">
       {/* Header Section */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold">
@@ -92,7 +92,9 @@ export default function Food() {
       </div>
 
       {/* Food Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="mb-12">
+      <div className="flex justify-center mt-10">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
         {filteredFood.length > 0 ? (
           filteredFood.map((foodItem) => (
             <FoodCard
@@ -115,6 +117,8 @@ export default function Food() {
           </div>
         )}
       </div>
+      </div>
+        </section>
     </main>
   );
 }

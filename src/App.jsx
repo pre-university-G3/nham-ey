@@ -126,11 +126,13 @@ export default function App() {
             <path d="M185.664 2.25H371.093" stroke="#75A511" strokeWidth="3" />
           </svg>
         </div>
-        <div className="flex justify-center gap-10 my-10">
+        <div className="flex justify-center my-10">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           <FoodCategory image="../src/images/food/breakfast.png" title="Breakfast" />
           <FoodCategory image="../src/images/food/lunch.png" title="Lunch" />
           <FoodCategory image="../src/images/food/dessert.png" title="Dessert" />
           <FoodCategory image="../src/images/food/fast_food.png" title="Fast Food" />
+          </div>
         </div>
       </div>
 
@@ -143,6 +145,7 @@ export default function App() {
             <path d="M185.664 2.25H371.093" stroke="#75A511" strokeWidth="3" />
           </svg>
         </div>
+        <div className="flex justify-center">
         <div className="mx-50 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-10 px-4 mt-10">
           {trendingRestaurant.map((res) => (
             <ResturantCard
@@ -155,11 +158,12 @@ export default function App() {
             />
           ))}
         </div>
+          </div>
       </div>
 
       {/* BANNER */}
-      <div className="bg-bg-2 w-full h-[193px] my-[50px] flex items-center justify-between px-[200px]">
-        <div>
+      <div className="bg-bg-2 w-full h-[193px] my-[50px] flex justify-center">
+        <div className="mx-[100px]">
           <h1 className="text-[60px] text-primary font-bold">Good Food</h1>
           <h2 className="text-[32px] font-bold text-zinc-700">Great time!</h2>
           <p className="w-[500px] text-sm text-zinc-600">
@@ -167,7 +171,7 @@ export default function App() {
             info about the foods you like.
           </p>
         </div>
-        <div>
+        <div className="mx-[100px]">
           <img src="../src/images/img-style.png" alt="Decorative Banner" />
         </div>
       </div>
@@ -184,7 +188,7 @@ export default function App() {
           </div>
         </div>
         <div className="flex justify-center mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
             {trendingFood.map((food) => (
               <FoodCard
                 key={`trending-${food.id}`}
