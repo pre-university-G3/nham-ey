@@ -2,10 +2,6 @@ import React from 'react'
 
 export default function About() {
   return (
-<<<<<<< HEAD
-    <div>About</div>
-  )
-=======
     <>
       <section>
         <div className="bg-gray-100">
@@ -208,5 +204,4 @@ export default function About() {
       </section>
     </>
   );
->>>>>>> f98ad53c02e44730c8858a451c5c8dffbb9b4f72
 }
