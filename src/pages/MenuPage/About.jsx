@@ -158,44 +158,45 @@ export default function About() {
                 name="Min Phanith"
               />
               <MentorCard
-                image="/src/images/.JPG"
-                role="Mentor"
-                name="unnown"
+                
+                image="/src/images/Kea.JPG"
+                role="Sub Team Leader"
+                name="Lim Mouykea"
               />
               <MentorCard
                 image="/src/images/mingyeck.JPG"
-                role="Mentor"
+                role="Member"
                 name="Houng Mingyeak"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
-                role="Mentor"
-                name="Srorng Sokcheat"
+                image="/src/images/nak.JPG"
+                role="Member"
+                name="Thai Ratanak"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
-                role="Mentor"
-                name="Srorng Sokcheat"
+                image="/src/images/nuth.JPG"
+                role="Member"
+                name=" Bean SovannRanuth"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
-                role="Mentor"
-                name="Srorng Sokcheat"
+                image="/src/images/bol.JPG"
+                role="Member"
+                name="Houn Vibol"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
-                role="Mentor"
-                name="Srorng Sokcheat"
+                image="/src/images/tri.JPG"
+                role="Member"
+                name=" Ri Tri"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
-                role="Mentor"
-                name="Srorng Sokcheat"
+                image="/src/images/Na.JPG"
+                role="Member"
+                name=" Ben Thona"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
-                role="Mentor"
-                name="Srorng Sokcheat"
+                image="/src/images/nich.JPG"
+                role="Member"
+                name=" Phorn Sunnich"
               />
             </div>
           </div>
