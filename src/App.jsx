@@ -61,38 +61,52 @@ export default function App() {
   return (
     <main>
       {/* HERO SECTION */}
-      <section className="w-full h-screen relative overflow-hidden bg-[#E5F7DC] flex items-center">
-        <div className="absolute top-0 left-0 w-full h-full bg-green-200 rounded-br-[50%] md:rounded-br-[40%] lg:rounded-br-[30%]"></div>
+      <section className="w-full min-h-screen relative overflow-hidden bg-[url('/Assets/background.png')] bg-cover bg-center bg-no-repeat flex items-center">
+        {/* Background overlay with smooth gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-white/30 rounded-br-[50%] md:rounded-br-[40%] lg:rounded-br-[30%] backdrop-blur-sm"></div>
 
-        <div className="relative z-10 flex flex-col items-start px-8 md:px-16 lg:px-32 w-1/2">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 uppercase tracking-wide leading-tight">
-            Experience Authentic
-          </h1>
-          <div className="flex items-center mt-2">
-            <div className="w-16 h-1 bg-primary mr-4"></div>
-            <h2 className="text-2xl md:text-3xl font-bold text-primary uppercase">
-              Cambodian Cuisine
-            </h2>
+        {/* Content container with responsive improvements */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between relative z-10">
+          {/* Text content */}
+          <div className="w-full lg:w-1/2 py-12 lg:py-24 space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 uppercase tracking-tight leading-snug">
+              Experience Authentic <span className="block text-primary">Cambodian Cuisine</span>
+            </h1>
+            
+            <div className="flex items-center">
+              <div className="w-16 h-1 bg-primary mr-4"></div>
+              <p className="text-lg md:text-xl text-gray-700">
+                Premium Dining Experience
+              </p>
+            </div>
+            
+            <p className="text-lg md:text-xl text-gray-700 max-w-lg">
+              Discover the rich flavors and traditions of Cambodia at Nham Ey. Our chefs bring generations of culinary heritage to your plate.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <button className="px-8 py-3 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-xl transition-all duration-300 transform hover:scale-105">
+                Explore Menu
+              </button>
+              <button className="px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 text-lg font-medium rounded-xl transition-all duration-300">
+                Book a Table
+              </button>
+            </div>
           </div>
-          <p className="text-lg md:text-xl text-gray-800 mt-4">
-            Discover the rich flavors and traditions of Cambodia at Nham Ey.
-          </p>
-          <div className="mt-6 flex gap-4">
-            <button className="w-[159px] h-[46px] bg-hover-primary text-white text-xl rounded-xl hover:bg-primary">
-              Explore Foods
-            </button>
-            <button className="w-[183px] h-[46px] border-2 bg-bg-1 border-hover-primary rounded-xl text-xl text-zinc-800 hover:bg-hover-primary hover:text-white">
-              Find Restaurant
-            </button>
-          </div>
-        </div>
 
-        <div className="relative w-1/2 flex justify-center">
-          <img
-            src="/Assets/salad-splah-explosion-transparent-background_1259336-338-removebg-preview.png"
-            alt="Cambodian Food"
-            className="w-full max-w-lg md:max-w-xl lg:max-w-2xl object-contain"
-          />
+          {/* Food image with better positioning */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+            <div className="relative w-full max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl">
+              <img
+                src="/Assets/food1.png"
+                alt="Authentic Cambodian Salad"
+                className="w-full h-auto object-contain animate-float"
+                loading="lazy"
+              />
+              {/* Subtle shadow for depth */}
+              <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl -z-10"></div>
+            </div>
+          </div>
         </div>
       </section>
 
