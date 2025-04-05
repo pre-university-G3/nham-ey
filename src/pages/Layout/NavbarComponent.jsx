@@ -34,12 +34,12 @@ export default function NavbarComponent() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <div className="relative">
             <input
               type="text"
               placeholder="Search"
-              className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+              className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-hover-primary focus:border-hover-primary"
             />
           </div>
 
@@ -48,6 +48,7 @@ export default function NavbarComponent() {
             Log In
           </NavLink>
 
+<<<<<<< HEAD
           <NavLink
             to="/register"
             className="bg-primary  text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors"
@@ -55,6 +56,9 @@ export default function NavbarComponent() {
             Register
           </NavLink>
         </div>
+=======
+        </div> */}
+>>>>>>> f98ad53c02e44730c8858a451c5c8dffbb9b4f72
       </div>
     </header>
   );
