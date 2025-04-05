@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./index.css";
 import FoodCard from "./component/cards/FoodCard";
 import FoodCategory from "./component/cards/FoodCategory";
@@ -63,7 +64,7 @@ export default function App() {
       {/* HERO SECTION */}
       <section className="w-full min-h-screen relative overflow-hidden bg-[url('/Assets/background.png')] bg-cover bg-center bg-no-repeat flex items-center">
         {/* Background overlay with smooth gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-white/30 rounded-br-[50%] md:rounded-br-[40%] lg:rounded-br-[30%] backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-white/30 rounded-br-[50%] md:rounded-br-[40%] lg:rounded-br-[30%] backdrop-blur-sm z-0"></div>
 
         {/* Content container with responsive improvements */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between relative z-10">
@@ -85,12 +86,18 @@ export default function App() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <button className="px-8 py-3 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-xl transition-all duration-300 transform hover:scale-105">
-                Explore Menu
-              </button>
-              <button className="px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 text-lg font-medium rounded-xl transition-all duration-300">
-                Book a Table
-              </button>
+              <NavLink 
+                to="/food" 
+                className="px-8 py-3 bg-primary hover:bg-primary-dark text-white text-lg font-medium rounded-xl transition-all duration-300 transform hover:scale-105"
+              >
+                Explore Foods
+              </NavLink>
+              <NavLink 
+                to="/restaurant" 
+                className="px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 text-lg font-medium rounded-xl transition-all duration-300"
+              >
+                View Restaurants
+              </NavLink>
             </div>
           </div>
 
@@ -151,7 +158,7 @@ export default function App() {
       </div>
 
       {/* BANNER */}
-      <div className="bg-bg-2 w-full h-[193px] my-[50px] flex items-center justify-between px-[100px]">
+      <div className="bg-bg-2 w-full h-[193px] my-[50px] flex items-center justify-between px-[200px]">
         <div>
           <h1 className="text-[60px] text-primary font-bold">Good Food</h1>
           <h2 className="text-[32px] font-bold text-zinc-700">Great time!</h2>

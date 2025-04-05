@@ -158,14 +158,14 @@ export default function About() {
                 name="Min Phanith"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
+                image="/src/images/.JPG"
                 role="Mentor"
-                name="Srorng Sokcheat"
+                name="unnown"
               />
               <MentorCard
-                image="/src/images/Cher-Cheat.JPG"
+                image="/src/images/mingyeck.JPG"
                 role="Mentor"
-                name="Srorng Sokcheat"
+                name="Houng Mingyeak"
               />
               <MentorCard
                 image="/src/images/Cher-Cheat.JPG"
