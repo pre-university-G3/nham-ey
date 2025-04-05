@@ -34,6 +34,6 @@ export default function FoodCard({ id, image_url, name, description, price, aver
           </div>
         </div>
       </a>
-    </>
+</div>
   );
 }
