@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer({ email }) {
   return (
     <>
-      <footer className="bg-hover-primary w-auto py-15">
+      <footer className="bg-hover-primary w-auto py-10">
         <div className="justify-items-center text-center">
           <h1 className="text-zinc-900 font-bold text-2xl pb-2">
             Stay updated with us!
