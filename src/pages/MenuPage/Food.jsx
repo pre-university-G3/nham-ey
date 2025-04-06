@@ -7,7 +7,7 @@ export default function Food() {
   const [selectedMealType, setSelectedMealType] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const mealTypes = ["all", "breakfast", "lunch", "dinner", "snack"];
+  const mealTypes = ["all", "breakfast", "lunch", "dinner", "snack" ,  "dessert"];
   const base_url = "https://nham-ey.istad.co";
 
   // Fetch food data
@@ -27,29 +27,46 @@ export default function Food() {
     getFood();
   }, []);
 
+  // Log meal_types to debug overlap
+  useEffect(() => {
+    console.log("Meal types for each food:");
+    food.forEach(item => {
+      console.log(`${item.name}: ${JSON.stringify(item.meal_types)}`);
+    });
+  }, [food]);
+
+  // Filtering logic
   useEffect(() => {
     let results = food;
-    
-    // Apply meal type filter
+
+    // Filter by meal type
     if (selectedMealType !== "all") {
-      results = results.filter(item => 
-        item.meal_types && item.meal_types.includes(selectedMealType)
+      results = results.filter(item =>
+        item.meal_types &&
+        item.meal_types.map(type => type.toLowerCase()).includes(selectedMealType.toLowerCase())
       );
+
+      // Sort: exclusives first
+      results.sort((a, b) => {
+        const aExclusive = a.meal_types.length === 1 && a.meal_types[0].toLowerCase() === selectedMealType.toLowerCase();
+        const bExclusive = b.meal_types.length === 1 && b.meal_types[0].toLowerCase() === selectedMealType.toLowerCase();
+        return bExclusive - aExclusive;
+      });
     }
-    
-    // Apply search filter
+
+    // Filter by search term
     if (searchTerm) {
       results = results.filter(item =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
+
     setFilteredFood(results);
   }, [selectedMealType, searchTerm, food]);
 
   return (
     <main className="mt-[10px]">
-      {/* Header Section */}
+      {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold">
           <span className="text-zinc-800">Your choice</span>
@@ -74,7 +91,7 @@ export default function Food() {
         />
       </div>
 
-      {/* Meal Type Filters */}
+      {/* Meal Type Buttons */}
       <div className="flex justify-center flex-wrap gap-3 mb-10">
         {mealTypes.map((type) => (
           <button
@@ -93,32 +110,32 @@ export default function Food() {
 
       {/* Food Grid */}
       <section className="mb-12">
-      <div className="flex justify-center mt-10">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-        {filteredFood.length > 0 ? (
-          filteredFood.map((foodItem) => (
-            <FoodCard
-              key={foodItem.id}
-              name={foodItem.name}
-              price={foodItem.price}
-              image_url={`${base_url}${foodItem.image_url}`}
-              description={foodItem.description}
-              average_rating={foodItem.average_rating}
-              category={foodItem.category}
-            />
-          ))
-        ) : (
-          <div className="col-span-full text-center py-12">
-            <p className="text-xl text-gray-500">
-              {searchTerm 
-                ? `No items found for "${searchTerm}"`
-                : "No food items available"}
-            </p>
+        <div className="flex justify-center mt-10">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+            {filteredFood.length > 0 ? (
+              filteredFood.map((foodItem) => (
+                <FoodCard
+                  key={foodItem.id}
+                  name={foodItem.name}
+                  price={foodItem.price}
+                  image_url={`${base_url}${foodItem.image_url}`}
+                  description={foodItem.description}
+                  average_rating={foodItem.average_rating}
+                  category={foodItem.category}
+                />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-xl text-gray-500">
+                  {searchTerm 
+                    ? `No items found for "${searchTerm}"`
+                    : "No food items available"}
+                </p>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      </div>
-        </section>
+        </div>
+      </section>
     </main>
   );
 }
