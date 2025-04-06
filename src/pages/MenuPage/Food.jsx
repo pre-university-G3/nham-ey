@@ -81,7 +81,7 @@ export default function Food() {
           placeholder="Search food..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full max-w-md px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+          className="w-full max-w-md px-4 py-3 border border-gray-300 dark:placeholder:text-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all"
         />
       </div>
 
