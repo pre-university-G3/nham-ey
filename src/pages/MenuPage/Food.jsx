@@ -7,7 +7,7 @@ export default function Food() {
   const [selectedMealType, setSelectedMealType] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const mealTypes = ["all", "breakfast", "lunch", "dinner", "snack" ,  "dessert"];
+  const mealTypes = ["all", "breakfast", "lunch", "dinner", "snack", "dessert"];
   const base_url = "https://nham-ey.istad.co";
 
   // Fetch food data
@@ -65,16 +65,16 @@ export default function Food() {
   }, [selectedMealType, searchTerm, food]);
 
   return (
-    <main className="mt-[10px]">
-      {/* Header */}
+    <main className="pt-[10px] dark:bg-gray-900 pb-1">
+      {/* Header Section */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold">
-          <span className="text-zinc-800">Your choice</span>
-          <span className="text-primary"> is here</span>
+          <span className="text-zinc-800 dark:text-gray-100">Your choice</span>
+          <span className="text-primary dark:text-[#68e66f]"> is here</span>
         </h1>
         <div className="flex justify-center mt-2">
           <svg width="372" height="4" viewBox="0 0 372 4">
-            <line x1="0" y1="2" x2="186" y2="2" stroke="black" strokeWidth="3" />
+            <line x1="0" y1="2" x2="186" y2="2" stroke="gray" strokeWidth="3" />
             <line x1="186" y1="2" x2="372" y2="2" stroke="#75A511" strokeWidth="3" />
           </svg>
         </div>
@@ -91,7 +91,7 @@ export default function Food() {
         />
       </div>
 
-      {/* Meal Type Buttons */}
+      {/* Meal Type Filters */}
       <div className="flex justify-center flex-wrap gap-3 mb-10">
         {mealTypes.map((type) => (
           <button
@@ -109,6 +109,33 @@ export default function Food() {
       </div>
 
       {/* Food Grid */}
+      <section>
+      <div className="flex justify-center mt-10">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+        {filteredFood.length > 0 ? (
+          filteredFood.map((foodItem) => (
+            <FoodCard
+              key={foodItem.id}
+              name={foodItem.name}
+              price={foodItem.price}
+              image_url={`${base_url}${foodItem.image_url}`}
+              description={foodItem.description}
+              average_rating={foodItem.average_rating}
+              category={foodItem.category}
+            />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-12">
+            <p className="text-xl text-gray-500">
+              {searchTerm 
+                ? `No items found for "${searchTerm}"`
+                : "No food items available"}
+            </p>
+          </div>
+        )}
+      </div>
+      </div>
+        </section>
       <section className="mb-12">
         <div className="flex justify-center mt-10">
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
