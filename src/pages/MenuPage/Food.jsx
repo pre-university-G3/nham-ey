@@ -110,6 +110,7 @@ export default function Food() {
               filteredFood.map((foodItem) => (
                 <FoodCard
                   key={foodItem.id}
+                  id={foodItem.id}
                   name={foodItem.name}
                   price={foodItem.price}
                   image_url={`${base_url}${foodItem.image_url}`}
