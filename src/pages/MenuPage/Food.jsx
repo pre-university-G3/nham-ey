@@ -7,8 +7,54 @@ export default function Food() {
   const [selectedMealType, setSelectedMealType] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [animatedPlaceholder, setAnimatedPlaceholder] = useState("");
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const placeholderTips = [
+    "Search Iced Coffee...",
+    "Search Lok lak...",
+    "Search Chicken...",
+    "Search Avocado...",
+    "Search Nom Akor...",
+  ];
+
   const mealTypes = ["all", "breakfast", "lunch", "dinner", "snack", "dessert"];
   const base_url = "https://nham-ey.istad.co";
+
+  // Typing animation for placeholder that cycles through tips
+  useEffect(() => {
+    if (searchTerm !== "") {
+      setAnimatedPlaceholder("");
+      return;
+    }
+
+    let tipIndex = placeholderIndex;
+    let charIndex = 0;
+    let currentTip = placeholderTips[tipIndex];
+    const typingSpeed = 80;
+    const delayAfterTyping = 1700;
+
+    const type = () => {
+      if (charIndex <= currentTip.length) {
+        setAnimatedPlaceholder(currentTip.slice(0, charIndex) + "_");
+        charIndex++;
+        typingTimer = setTimeout(type, typingSpeed);
+      } else {
+        // Once fully typed, wait, then cycle
+        waitingTimer = setTimeout(() => {
+          tipIndex = (tipIndex + 1) % placeholderTips.length;
+          setPlaceholderIndex(tipIndex);
+        }, delayAfterTyping);
+      }
+    };
+
+    let typingTimer = setTimeout(type, typingSpeed);
+    let waitingTimer;
+
+    return () => {
+      clearTimeout(typingTimer);
+      clearTimeout(waitingTimer);
+    };
+  }, [placeholderIndex, searchTerm]);
 
   // Fetch food data
   async function getFood() {
@@ -25,13 +71,6 @@ export default function Food() {
   useEffect(() => {
     getFood();
   }, []);
-
-  useEffect(() => {
-    console.log("Meal types for each food:");
-    food.forEach(item => {
-      console.log(`${item.name}: ${JSON.stringify(item.meal_types)}`);
-    });
-  }, [food]);
 
   useEffect(() => {
     let results = food;
@@ -60,7 +99,7 @@ export default function Food() {
 
   return (
     <main className="pt-[10px] dark:bg-gray-900 pb-1">
-      {/* Header Section */}
+      {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold">
           <span className="text-zinc-800 dark:text-gray-100">Your choice</span>
@@ -78,10 +117,10 @@ export default function Food() {
       <div className="mb-8 flex justify-center">
         <input
           type="text"
-          placeholder="Search food..."
+          placeholder={animatedPlaceholder}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full max-w-md px-4 py-3 border border-gray-300 dark:placeholder:text-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+          className="w-full max-w-md px-4 py-3 border border-gray-300 dark:placeholder:text-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all font-mono"
         />
       </div>
 

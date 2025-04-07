@@ -6,6 +6,9 @@ import Rasturant from "./pages/MenuPage/Rasturant.jsx"
 import Root from "./pages/Layout/Root.jsx"
 import Food from "./pages/MenuPage/Food.jsx"
 import About from "./pages/MenuPage/About.jsx"
+import Register from "./pages/MenuPage/Register.jsx"
+import Login from "./pages/MenuPage/Login.jsx"
+
 
 createRoot(document.getElementById("root")).render(
   
@@ -16,7 +19,10 @@ createRoot(document.getElementById("root")).render(
           <Route path="/restaurant" element={<Rasturant />} />
           <Route path="/food" element={<Food />} />
           <Route path="/About" element={<About />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/Login" element={<Login />} />
           <Route path="/categories" element={<categories />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

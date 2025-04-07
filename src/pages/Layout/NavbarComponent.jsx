@@ -1,70 +1,95 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'; // Make sure it's from react-router-dom
+import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function NavbarComponent() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 relative">
-      <div className="container mx-auto px-4 py-1 flex items-center justify-between relative">
-        {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-2 z-20">
-          <div className="w-14 h-14 sm:w-20 sm:h-20 relative">
-            <img
-              src="/Assets/Nham-Ey_Png.png?height=40&width=40"
-              alt="Logo"
-              className="object-cover w-full h-full rounded-full"
-            />
-          </div>
-        </NavLink>
+    <header className="bg-transparent-50 h-16">
+    <div className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <NavLink to="/" className="block text-lime-700">
+        <img
+          src="./src/images/Nham-Ey.png"
+          alt="nham ey logo"
+          className="max-h-[73px]"
+        />
+      </NavLink>
 
-        {/* Centered nav */}
-        <nav className="hidden md:flex gap-10 text-lg font-semibold absolute left-1/2 transform -translate-x-1/2">
-          <NavLink to="/" className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[#03dac6]"}>
-            Home
-          </NavLink>
-          <NavLink to="/food" className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[#03dac6]"}>
-            Food
-          </NavLink>
-          <NavLink to="/restaurant" className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[#03dac6]"}>
-            Restaurant
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[#03dac6]"}>
-            About Us
-          </NavLink>
-        </nav>
-
-        {/* Mobile Menu*/}
-        <div className="md:hidden z-20">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-gray-700 dark:text-gray-300 focus:outline-none"
-          >
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile nav */}
-      {menuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-5 pb-4">
-          <nav className="flex flex-col gap-3 text-lg font-medium text-left">
-            <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary  dark:hover:text-[#03dac6]"}>
+      <nav aria-label="Global" className="flex-1">
+        <ul className="flex justify-center items-center gap-8 text-xl font-semibold">
+          <li>
+            <NavLink
+              to="/"
+              className="text-zinc-600 transition hover:text-lime-600"
+            >
               Home
             </NavLink>
-            <NavLink to="/food" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary  dark:hover:text-[#03dac6]"}>
+          </li>
+          <li>
+            <NavLink
+              to="/food"
+              className="text-zinc-600 transition hover:text-lime-600"
+            >
               Food
             </NavLink>
-            <NavLink to="/restaurant" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[#03dac6]"}>
+          </li>
+          <li>
+            <NavLink
+              to="/restaurant"
+              className="text-zinc-600 transition hover:text-lime-600"
+            >
               Restaurant
             </NavLink>
-            <NavLink to="/about" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-primary dark:text-[#03dac6]" : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-[#03dac6]"}>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className="text-zinc-600 transition hover:text-lime-600"
+            >
               About Us
             </NavLink>
-          </nav>
+          </li>
+        </ul>
+      </nav>
+
+      <div className="flex items-center gap-4">
+        <div className="sm:flex sm:gap-4">
+          <NavLink
+            to="/login"
+            className="block rounded-lg bg-transparent ring-lime-700 ring-1 px-5 py-2.5 text-sm font-medium text-zinc-600 transition hover:bg-lime-600 hover:text-white hover:ring-lime-600"
+          >
+            Login
+          </NavLink>
+
+          <NavLink
+            to="/register"
+            className="hidden rounded-lg bg-lime-700 px-5 py-2.5 text-sm font-medium text-white transition hover:text-white hover:bg-lime-600 sm:block"
+          >
+            Register
+          </NavLink>
         </div>
-      )}
-    </header>
+
+        <button className="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
+          <span className="sr-only">Toggle menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
   );
 }

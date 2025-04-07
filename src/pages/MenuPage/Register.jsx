@@ -2,7 +2,7 @@
 
 import { useFormik } from "formik"
 import * as Yup from "yup"
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router"
 
 export default function Register() {
   // Define validation schema with Yup

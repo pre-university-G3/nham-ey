@@ -9,4 +9,23 @@
   --color-bg-1: #fafaf9;
   --color-bg-2: #f2f0f0;
 }
+.text-gradient-animated {
+  background: linear-gradient(250deg, #58b8ee, #ff6b6b, #58b8ee);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 13s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
