@@ -1,52 +1,119 @@
-"use client"
-
-import { useFormik } from "formik"
-import * as Yup from "yup"
-import { NavLink } from "react-router"
+"use client";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Register() {
-  // Define validation schema with Yup
-  const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required").min(3, "Username must be at least 3 characters"),
-    email: Yup.string().email("Invalid email address").required("Email is required"),
-    password: Yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
-    confirmPassword: Yup.string()
-      .required("Please confirm your password")
-      .oneOf([Yup.ref("password")], "Passwords must match"),
-    agreeToTerms: Yup.boolean()
-      .required("You must accept the terms and policy")
-      .oneOf([true], "You must accept the terms and policy"),
-  })
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const navigate = useNavigate();
 
-  // Initialize Formik
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      agreeToTerms: false,
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      console.log("Form values:", values)
-      // Add your registration logic here
-    },
-  })
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const validateForm = () => {
+    const { username, email, password, confirmPassword } = formData;
+
+    if (!username || !email || !password || !confirmPassword) {
+      setError("All fields are required!");
+      return false;
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setError("Invalid email format.");
+      return false;
+    }
+
+    if (username.length < 3) {
+      setError("Username must be at least 3 characters.");
+      return false;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMsg("");
+
+    if (!validateForm()) return;
+
+    setLoading(true);
+    try {
+      const { username, email, password, confirmPassword } = formData;
+
+      const response = await fetch("https://nham-ey.istad.co/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          confirm_password: confirmPassword,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Something went wrong.");
+      }
+
+      setSuccessMsg("Account created successfully!");
+      setTimeout(() => navigate("/login"), 2000); // Redirect after 2 seconds
+    } catch (error) {
+      setError(error.message || "Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="flex flex-col md:flex-row w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden">
-        {/* Form Section - Expanded */}
         <div className="w-full md:w-1/2 p-8 md:p-10">
-          <form onSubmit={formik.handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="text-center md:text-left">
-              <h1 className="font-bold text-2xl mb-2 text-gray-800">Register Now!</h1>
-              <p className="text-sm text-gray-600 mb-6">Create your personal account to get started.</p>
+              <h1 className="font-bold text-2xl mb-2 text-gray-800">
+                Register Now!
+              </h1>
+              <p className="text-sm text-gray-600 mb-6">
+                Create your personal account to get started.
+              </p>
             </div>
 
+            {/* Username */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Username
               </label>
               <input
@@ -54,20 +121,23 @@ export default function Register() {
                 id="username"
                 name="username"
                 className={`w-full border ${
-                  formik.touched.username && formik.errors.username ? "border-red-500" : "border-gray-300"
+                  error && !formData.username
+                    ? "border-red-500"
+                    : "border-gray-300"
                 } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
                 placeholder="Enter username"
-                value={formik.values.username}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                value={formData.username}
+                onChange={handleInputChange}
               />
-              {formik.touched.username && formik.errors.username && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.username}</div>
-              )}
             </div>
 
+
+            {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email
               </label>
               <input
@@ -75,107 +145,125 @@ export default function Register() {
                 id="email"
                 name="email"
                 className={`w-full border ${
-                  formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-300"
+                  error && !formData.email
+                    ? "border-red-500"
+                    : "border-gray-300"
                 } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
                 placeholder="Enter your email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                value={formData.email}
+                onChange={handleInputChange}
               />
-              {formik.touched.email && formik.errors.email && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.email}</div>
-              )}
             </div>
 
+            {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className={`w-full border ${
-                  formik.touched.password && formik.errors.password ? "border-red-500" : "border-gray-300"
-                } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                placeholder="Enter your password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.password && formik.errors.password && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.password}</div>
-              )}
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  className={`w-full border ${
+                    error && !formData.password
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+                <div
+                  className="absolute right-3 top-3 cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </div>
+              </div>
             </div>
 
+            {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Confirm Password
               </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                className={`w-full border ${
-                  formik.touched.confirmPassword && formik.errors.confirmPassword ? "border-red-500" : "border-gray-300"
-                } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                placeholder="Confirm your password"
-                value={formik.values.confirmPassword}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.confirmPassword}</div>
-              )}
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  className={`w-full border ${
+                    error && !formData.confirmPassword
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                  placeholder="Confirm your password"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                />
+                <div
+                  className="absolute right-3 top-3 cursor-pointer"
+                  onClick={toggleConfirmPasswordVisibility}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff size={20} />
+                  ) : (
+                    <Eye size={20} />
+                  )}
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-start">
-              <div className="flex items-center h-5">
-                <input
-                  id="agreeToTerms"
-                  name="agreeToTerms"
-                  type="checkbox"
-                  className={`w-4 h-4 border ${
-                    formik.touched.agreeToTerms && formik.errors.agreeToTerms ? "border-red-500" : "border-gray-300"
-                  } rounded focus:ring-green-500 focus:outline-none`}
-                  checked={formik.values.agreeToTerms}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </div>
-              <label htmlFor="agreeToTerms" className="ml-2 text-sm text-gray-700">
-                I agree to the{" "}
-                <NavLink to="/terms" className="text-primary hover:underline font-medium">
-                  terms & policy
-                </NavLink>
-              </label>
-            </div>
-            {formik.touched.agreeToTerms && formik.errors.agreeToTerms && (
-              <div className="text-red-500 text-xs -mt-3 ml-6">{formik.errors.agreeToTerms}</div>
+            {/* Error Message */}
+            {error && (
+              <div className="text-red-600 text-sm text-center">{error}</div>
             )}
 
+            {/* Success Message */}
+            {successMsg && (
+              <div className="text-green-600 text-sm text-center">
+                {successMsg}
+              </div>
+            )}
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full text-white bg-primary hover:bg-green-700 text-base font-medium rounded-lg py-3 px-4 transition duration-200"
+              className="w-full text-white bg-green-600 hover:bg-green-700 text-base font-medium rounded-lg py-3 px-4 transition duration-200"
+              disabled={loading}
             >
-              Create Account
+              {loading ? "Creating account..." : "Create Account"}
             </button>
+
 
             <p className="text-sm text-gray-700 text-center mt-6">
               Already have an account?{" "}
-              <NavLink to="/login" className="text-primary hover:underline font-medium">
+              <NavLink
+                to="/login"
+                className="text-green-600 hover:underline font-medium"
+              >
                 Log in
               </NavLink>
             </p>
           </form>
         </div>
 
-        {/* Image Section - Expanded */}
+        {/* Right side image */}
         <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-green-50 to-green-100 items-center justify-center p-8">
-          <img src="/Assets/Mobile login-rafiki.png" alt="register" className="object-contain h-full max-h-[32rem]" />
+          <img
+            src="/Assets/Mobile login-rafiki.png"
+            alt="register"
+            className="object-contain h-full max-h-[32rem]"
+          />
         </div>
       </div>
     </div>
-  )
+  );
 }
-

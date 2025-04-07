@@ -1,95 +1,212 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function NavbarComponent() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+    setMenuOpen(false);
+  };
 
   return (
-    <header className="bg-transparent-50 h-16">
-    <div className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
-      <NavLink to="/" className="block text-lime-700">
-        <img
-          src="./src/images/Nham-Ey.png"
-          alt="nham ey logo"
-          className="max-h-[73px]"
-        />
-      </NavLink>
-
-      <nav aria-label="Global" className="flex-1">
-        <ul className="flex justify-center items-center gap-8 text-xl font-semibold">
-          <li>
-            <NavLink
-              to="/"
-              className="text-zinc-600 transition hover:text-lime-600"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/food"
-              className="text-zinc-600 transition hover:text-lime-600"
-            >
-              Food
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/restaurant"
-              className="text-zinc-600 transition hover:text-lime-600"
-            >
-              Restaurant
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className="text-zinc-600 transition hover:text-lime-600"
-            >
-              About Us
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-
-      <div className="flex items-center gap-4">
-        <div className="sm:flex sm:gap-4">
-          <NavLink
-            to="/login"
-            className="block rounded-lg bg-transparent ring-lime-700 ring-1 px-5 py-2.5 text-sm font-medium text-zinc-600 transition hover:bg-lime-600 hover:text-white hover:ring-lime-600"
-          >
-            Login
-          </NavLink>
-
-          <NavLink
-            to="/register"
-            className="hidden rounded-lg bg-lime-700 px-5 py-2.5 text-sm font-medium text-white transition hover:text-white hover:bg-lime-600 sm:block"
-          >
-            Register
+    <header className="bg-white shadow-sm h-16 sticky top-0 z-50 p-10">
+      <div className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8 ">
+        {/* Logo - Left aligned */}
+        <div className="flex-shrink-0">
+          <NavLink to="/" className="block">
+            <img
+              src="./src/images/Nham-Ey.png"
+              alt="nham ey logo"
+              className="h-20 w-auto"
+            />
           </NavLink>
         </div>
 
-        <button className="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
-          <span className="sr-only">Toggle menu</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="size-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden md:flex mx-8 flex-1 justify-center">
+          <ul className="flex items-center space-x-8 text-lg font-medium">
+            <li>
+              <NavLink
+                to="/"
+                className="text-gray-700 hover:text-lime-600 transition-colors duration-200"
+                activeClassName="text-lime-600"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/food"
+                className="text-gray-700 hover:text-lime-600 transition-colors duration-200"
+                activeClassName="text-lime-600"
+              >
+                Food
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/restaurant"
+                className="text-gray-700 hover:text-lime-600 transition-colors duration-200"
+                activeClassName="text-lime-600"
+              >
+                Restaurant
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className="text-gray-700 hover:text-lime-600 transition-colors duration-200"
+                activeClassName="text-lime-600"
+              >
+                About Us
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
 
+        {/* Auth Buttons - Right aligned */}
+        <div className="hidden md:flex items-center space-x-4">
+          {isAuthenticated ? (
+            <>
+              <div className="flex items-center space-x-4">
+                <NavLink
+                  to="/profile"
+                  className="px-4 py-2 text-gray-700 hover:text-lime-600 transition-colors duration-200"
+                >
+                  Profile
+                </NavLink>
+                <NavLink
+                  to="/wishlist"
+                  className="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700 transition-colors duration-200"
+                >
+                  Wishlist
+                </NavLink>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 text-red-600 hover:text-white hover:bg-red-600 rounded-md transition-colors duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="flex items-center space-x-4">
+              <NavLink
+                to="/login"
+                className="px-4 py-2 text-gray-700 hover:text-lime-600 transition-colors duration-200"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className="px-4 py-2 bg-lime-600 text-white rounded-md hover:bg-lime-700 transition-colors duration-200"
+              >
+                Register
+              </NavLink>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile menu button - Right aligned */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-lime-600 focus:outline-none"
+          >
+            <span className="sr-only">Open menu</span>
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg py-4 px-6">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <NavLink
+              to="/"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-lime-600"
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/food"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-lime-600"
+              onClick={() => setMenuOpen(false)}
+            >
+              Food
+            </NavLink>
+            <NavLink
+              to="/restaurant"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-lime-600"
+              onClick={() => setMenuOpen(false)}
+            >
+              Restaurant
+            </NavLink>
+            <NavLink
+              to="/about"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-lime-600"
+              onClick={() => setMenuOpen(false)}
+            >
+              About Us
+            </NavLink>
+          </div>
+
+          <div className="pt-4 pb-2 border-t border-gray-200">
+            {isAuthenticated ? (
+              <div className="space-y-3">
+                <NavLink
+                  to="/profile"
+                  className="block w-full px-4 py-2 text-base font-medium text-gray-700 hover:text-lime-600"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Profile
+                </NavLink>
+                <NavLink
+                  to="/wishlist"
+                  className="block w-full px-4 py-2 text-center text-base font-medium text-white bg-lime-600 rounded-md hover:bg-lime-700"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Wishlist
+                </NavLink>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full px-4 py-2 text-base font-medium text-red-600 hover:text-white hover:bg-red-600 rounded-md"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <NavLink
+                  to="/login"
+                  className="block w-full px-4 py-2 text-base font-medium text-gray-700 hover:text-lime-600"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="block w-full px-4 py-2 text-center text-base font-medium text-white bg-lime-600 rounded-md hover:bg-lime-700"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Register
+                </NavLink>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
