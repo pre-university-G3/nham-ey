@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router"; // Changed from react-router to react-router-dom
 
-export default function RestaurantCard({ image_url, name, description, id }) {
+export default function ResturantCard({ image_url, name, description, id }) {
   return (
-    <NavLink 
+    <NavLink
       to={`/restaurant/${id}`}
       className="group block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
     >
@@ -11,7 +11,6 @@ export default function RestaurantCard({ image_url, name, description, id }) {
         {/* Image Section */}
         <div className="w-full md:w-2/5 h-full overflow-hidden">
           <img
-          
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             src={image_url}
             alt={`${name} restaurant`}
@@ -27,7 +26,7 @@ export default function RestaurantCard({ image_url, name, description, id }) {
           <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-5">
             {description}
           </p>
-          
+
           {/* Additional Info */}
           <div className="mt-auto pt-3 border-t border-gray-100 dark:border-gray-700">
             <div className="flex items-center text-sm text-gray-500 dark:text-gray-200">

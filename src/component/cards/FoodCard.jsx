@@ -1,8 +1,9 @@
 "use client";
+import { NavLink } from "react-router";
 
 export default function FoodCard({ id, image_url, name, description, price, average_rating }) {
   return (
-    <a href="#">
+    <NavLink to={`/food/${id}`}>
       <div className="w-[400px] h-[419px] bg-white dark:bg-gray-600 rounded-xl shadow-sm box-border hover:ring-2 hover:ring-primary hover:scale-101 transform transition duration-200">
         
         {/* Image Section */}
@@ -46,6 +47,6 @@ export default function FoodCard({ id, image_url, name, description, price, aver
           </div>
         </div>
       </div>
-    </a>
+    </NavLink>
   );
 }

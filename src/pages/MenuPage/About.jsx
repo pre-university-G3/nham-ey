@@ -75,7 +75,7 @@ export default function About() {
         <div className="w-full flex justify-center pt-[60px] md:pt-[130px] px-4">
   <div className="flex flex-col md:flex-row items-center gap-6 max-w-5xl w-full">
     <img
-      src="/public/Assets/AboutUsimg.png"
+      src="/Assets/AboutUsimg.png"
       alt="About Us"
       className="w-[414px] md:w-[414px] h-auto md:h-[331px] object-contain rounded-lg"
     />
@@ -94,7 +94,7 @@ export default function About() {
 <div className="w-full flex justify-center pb-[60px] md:pb-[130px] pt-[10px]">
   <div className="flex flex-col md:flex-row-reverse items-center gap-11 max-w-5xl w-full">
     <img
-      src="/public/Assets/about2img.webp"
+      src="/Assets/about2img.webp"
       alt="About Us"
       className="w-[414px] md:w-[414px] h-auto md:h-[331px] object-contain rounded-lg"
     />
