@@ -80,7 +80,7 @@ export default function Login() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-green-600"
+                  className="h-8 w-8 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -196,7 +196,7 @@ export default function Login() {
                 </div>
                 <NavLink
                   to="/forgot-password"
-                  className="text-sm text-green-600 hover:underline font-medium"
+                  className="text-sm text-primary hover:underline font-medium"
                 >
                   Forgot Password?
                 </NavLink>
@@ -204,7 +204,7 @@ export default function Login() {
 
               <button
                 type="submit"
-                className="w-full text-white bg-green-600 hover:bg-green-700 text-base font-medium rounded-lg py-3 px-4 transition duration-200 flex items-center justify-center"
+                className="w-full text-white bg-hover-primary hover:bg-primary text-base font-medium rounded-lg py-3 px-4 transition duration-200 flex items-center justify-center"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -222,7 +222,7 @@ export default function Login() {
                 Don&apos;t have an account?{" "}
                 <NavLink
                   to="/register"
-                  className="text-green-600 hover:underline font-medium"
+                  className="text-primary hover:underline font-medium"
                 >
                   Register
                 </NavLink>

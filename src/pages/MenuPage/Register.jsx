@@ -228,7 +228,7 @@ export default function Register() {
 
             {/* Success Message */}
             {successMsg && (
-              <div className="text-green-600 text-sm text-center">
+              <div className="text-primary text-sm text-center">
                 {successMsg}
               </div>
             )}
@@ -236,7 +236,7 @@ export default function Register() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full text-white bg-green-600 hover:bg-green-700 text-base font-medium rounded-lg py-3 px-4 transition duration-200"
+              className="w-full text-white bg-hover-primary hover:bg-primary text-base font-medium rounded-lg py-3 px-4 transition duration-200"
               disabled={loading}
             >
               {loading ? "Creating account..." : "Create Account"}
@@ -247,7 +247,7 @@ export default function Register() {
               Already have an account?{" "}
               <NavLink
                 to="/login"
-                className="text-green-600 hover:underline font-medium"
+                className="text-primary hover:underline font-medium"
               >
                 Log in
               </NavLink>
