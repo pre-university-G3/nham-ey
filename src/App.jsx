@@ -4,6 +4,7 @@ import "./index.css";
 import FoodCard from "./component/cards/FoodCard";
 import FoodCategory from "./component/cards/FoodCategory";
 import ResturantCard from "./component/cards/ResturantCard";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const [food, setFood] = useState([]);
@@ -60,6 +61,8 @@ export default function App() {
   }
 
   return (
+    <>
+    <Toaster position="top-right" reverseOrder={false} />
     <main className="dark:bg-gray-900 pb-1">
       {/* HERO SECTION */}
       <section className="w-full min-h-screen relative overflow-hidden bg-[url('/Assets/background.png')] bg-cover bg-center bg-no-repeat flex items-center">
@@ -207,5 +210,6 @@ export default function App() {
         </div>
       </section>
     </main>
+    </>
   );
 }

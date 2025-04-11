@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react"; // Import Eye and EyeOff icons
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false); // State for toggling password visibility
   const navigate = useNavigate(); // Initialize useNavigate
 
   const validationSchema = Yup.object({
@@ -117,8 +118,7 @@ export default function Login() {
                 </div>
               )}
 
-
-<div>
+              <div>
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-2"
@@ -154,21 +154,34 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className={`w-full border ${
-                    formik.touched.password && formik.errors.password
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
-                  placeholder="Enter your password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  disabled={isLoading}
-                />
+                <div className="relative">
+                  <input
+                    type={passwordVisible ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    className={`w-full border ${
+                      formik.touched.password && formik.errors.password
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } text-gray-900 text-sm rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500`}
+                    placeholder="Enter your password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    disabled={isLoading}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setPasswordVisible(!passwordVisible)} // Toggle visibility
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                  >
+                    {passwordVisible ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
+                </div>
                 {formik.touched.password && formik.errors.password && (
                   <div className="text-red-500 text-xs mt-1">
                     {formik.errors.password}
@@ -182,6 +195,7 @@ export default function Login() {
                     type="checkbox"
                     id="rememberMe"
                     name="rememberMe"
+                    required
                     className="w-4 h-4 border-gray-300 rounded focus:ring-green-500"
                     checked={formik.values.rememberMe}
                     onChange={formik.handleChange}
@@ -216,7 +230,6 @@ export default function Login() {
                   "Login"
                 )}
               </button>
-
 
               <p className="text-sm text-gray-700 text-center mt-6">
                 Don&apos;t have an account?{" "}
