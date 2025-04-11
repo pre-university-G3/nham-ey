@@ -10,7 +10,8 @@ import Register from "./pages/MenuPage/Register.jsx"
 import Login from "./pages/MenuPage/Login.jsx"
 import FoodDetails from "./pages/MenuPage/FoodDetails.jsx"
 import RestaurantDetail from "./pages/MenuPage/RestaurantDetail.jsx"
-import Wishlist from "./pages/MenuPage/wishlist.jsx"
+import Wishlist from "./pages/MenuPage/Wishlist.jsx"
+import Profile from "./pages/MenuPage/Profile.jsx"
 
 
 createRoot(document.getElementById("root")).render(
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/profile" element={<Profile />} />
           
           <Route path="/categories" element={<categories />} />
           <Route path="/food/:id" element={<FoodDetails />} />

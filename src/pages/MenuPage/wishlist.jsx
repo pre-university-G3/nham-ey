@@ -1,100 +1,75 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import FoodCard from "../../component/cards/FoodCard";
-import toast from "react-hot-toast";
-import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
-export default function WishlistPage() {
+export default function Wishlist() {
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchWishlist() {
-      const myHeaders = new Headers();
-      myHeaders.append("Accept", "application/json");
-      myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
-
-      const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow",
-      };
-
-      try {
-        const response = await fetch("https://nham-ey.istad.co/wishlist", requestOptions);
-        if (response.ok) {
-          const data = await response.json();
-          const normalized = data.map((item) => {
-            const food = item.food_item || item;
-            return {
-              ...food,
-              wishlistId: item.id,
-            };
-          });
-          setWishlistItems(normalized);
-        } else {
-          toast.error("Failed to fetch wishlist");
-        }
-      } catch (error) {
-        console.error("Error fetching wishlist:", error);
-        toast.error("Something went wrong");
-      }
+  const fetchWishlist = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("No token found. Please login.");
+      setIsLoading(false);
+      return;
     }
 
-    fetchWishlist();
-  }, []);
-
-  const handleRemoveFromWishlist = async (foodId) => {
     try {
-      const response = await fetch(`https://nham-ey.istad.co/wishlist/${foodId}`, {
-        method: "DELETE",
+      setIsLoading(true);
+      const res = await fetch("https://nham-ey.istad.co/wishlist", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
-      if (response.ok) {
-        setWishlistItems((prev) => prev.filter((item) => item.id !== foodId));
-        toast.success("Removed from wishlist!");
-      } else {
-        toast.error("Failed to remove item");
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.message || "Failed to fetch wishlist.");
       }
-    } catch (error) {
-      console.error("Error removing from wishlist:", error);
-      toast.error("Something went wrong");
+
+      const data = await res.json();
+      const normalized = data.map((item) => {
+        const food = item.item; // <-- this is the correct key
+        return { ...food, wishlistId: item.id };
+      });
+
+      setWishlistItems(normalized);
+    } catch (err) {
+      toast.error(err.message);
+      console.error("Fetch error:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchWishlist();
+  }, []);
+
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-3xl font-bold text-center my-6">My Wishlist</h1>
-      <div className="flex justify-center mb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {wishlistItems.length > 0 ? (
-              wishlistItems.map((food) => (
-                <motion.div
-                  key={food.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <FoodCard
-                    id={food.id}
-                    image_url={food.image_url}
-                    name={food.name}
-                    description={food.description}
-                    price={food.price}
-                    average_rating={food.average_rating}
-                    isWishlisted={true}
-                    toggleWishlist={() => handleRemoveFromWishlist(food.id)}
-                  />
-                </motion.div>
-              ))
-            ) : (
-              <p className="text-center text-gray-500 col-span-full">Your wishlist is empty.</p>
-            )}
-          </AnimatePresence>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center mb-6">My Wishlist</h1>
+      {isLoading ? (
+        <p className="text-center">Loading...</p>
+      ) : wishlistItems.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {wishlistItems.map((item) => (
+            <FoodCard
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              image_url={item.image_url}
+              description={item.description}
+              price={item.price}
+              average_rating={item.average_rating}
+              isWishlisted={true}
+              toggleWishlist={fetchWishlist}
+            />
+          ))}
         </div>
-      </div>
+      ) : (
+        <p className="text-center text-gray-500">Your wishlist is empty.</p>
+      )}
     </div>
   );
 }
