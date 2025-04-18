@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import FoodCard from "../../component/cards/FoodCard";
+import toast from "react-hot-toast";
 
 export default function Food() {
   const [food, setFood] = useState([]);
   const [filteredFood, setFilteredFood] = useState([]);
   const [selectedMealType, setSelectedMealType] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [wishlistMap, setWishlistMap] = useState({}); // Track wishlist status by food ID
 
   const [animatedPlaceholder, setAnimatedPlaceholder] = useState("");
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -20,7 +22,6 @@ export default function Food() {
   const mealTypes = ["all", "breakfast", "lunch", "dinner", "snack", "dessert"];
   const base_url = "https://nham-ey.istad.co";
 
-  // Typing animation for placeholder that cycles through tips
   useEffect(() => {
     if (searchTerm !== "") {
       setAnimatedPlaceholder("");
@@ -39,7 +40,6 @@ export default function Food() {
         charIndex++;
         typingTimer = setTimeout(type, typingSpeed);
       } else {
-        // Once fully typed, wait, then cycle
         waitingTimer = setTimeout(() => {
           tipIndex = (tipIndex + 1) % placeholderTips.length;
           setPlaceholderIndex(tipIndex);
@@ -56,8 +56,7 @@ export default function Food() {
     };
   }, [placeholderIndex, searchTerm]);
 
-  // Fetch food data
-  async function getFood() {
+  const getFood = async () => {
     try {
       const response = await fetch(`${base_url}/food-items`);
       const foods = await response.json();
@@ -66,10 +65,34 @@ export default function Food() {
     } catch (error) {
       console.error("Error fetching food items:", error);
     }
-  }
+  };
+
+  const fetchWishlist = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const res = await fetch(`${base_url}/wishlist`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error("Failed to fetch wishlist");
+
+      const data = await res.json();
+      const newMap = {};
+      data.forEach((item) => {
+        newMap[item.item.id] = item.id; // foodId -> wishlistId
+      });
+
+      setWishlistMap(newMap);
+    } catch (err) {
+      console.error("Error fetching wishlist:", err);
+    }
+  };
 
   useEffect(() => {
     getFood();
+    fetchWishlist();
   }, []);
 
   useEffect(() => {
@@ -96,6 +119,18 @@ export default function Food() {
 
     setFilteredFood(results);
   }, [selectedMealType, searchTerm, food]);
+
+  const handleToggleWishlist = (foodId, updatedWishlistId = null) => {
+    setWishlistMap((prev) => {
+      const newMap = { ...prev };
+      if (updatedWishlistId) {
+        newMap[foodId] = updatedWishlistId; // add to wishlist
+      } else {
+        delete newMap[foodId]; // remove from wishlist
+      }
+      return newMap;
+    });
+  };
 
   return (
     <main className="pt-[10px] dark:bg-gray-900 pb-1">
@@ -156,12 +191,17 @@ export default function Food() {
                   description={foodItem.description}
                   average_rating={foodItem.average_rating}
                   category={foodItem.category}
+                  isWishlisted={!!wishlistMap[foodItem.id]}
+                  wishlistId={wishlistMap[foodItem.id]}
+                  toggleWishlist={(foodId, newWishlistId) =>
+                    handleToggleWishlist(foodId, newWishlistId)
+                  }
                 />
               ))
             ) : (
               <div className="col-span-full text-center py-12">
                 <p className="text-xl text-gray-500">
-                  {searchTerm 
+                  {searchTerm
                     ? `No items found for "${searchTerm}"`
                     : "No food items available"}
                 </p>
