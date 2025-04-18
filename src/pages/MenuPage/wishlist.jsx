@@ -29,7 +29,7 @@ export default function Wishlist() {
 
       const data = await res.json();
       const normalized = data.map((item) => {
-        const food = item.item; // <-- this is the correct key
+        const food = item.item;
         return { ...food, wishlistId: item.id };
       });
 
@@ -46,11 +46,15 @@ export default function Wishlist() {
     fetchWishlist();
   }, []);
 
+  const removeFromUI = (foodId) => {
+    setWishlistItems((prev) => prev.filter((item) => item.id !== foodId));
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center mb-6">My Wishlist</h1>
       {isLoading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center p-[20%]">Loading...</p>
       ) : wishlistItems.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {wishlistItems.map((item) => (
@@ -63,12 +67,13 @@ export default function Wishlist() {
               price={item.price}
               average_rating={item.average_rating}
               isWishlisted={true}
-              toggleWishlist={fetchWishlist}
+              wishlistId={item.wishlistId}
+              toggleWishlist={removeFromUI}
             />
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500">Your wishlist is empty.</p>
+        <p className="text-center text-gray-500 p-[20%]">Your wishlist is empty.</p>
       )}
     </div>
   );

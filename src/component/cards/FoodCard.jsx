@@ -10,6 +10,7 @@ export default function FoodCard({
   price,
   average_rating,
   isWishlisted = false,
+  wishlistId = null,
   toggleWishlist,
 }) {
   const [isInWishlist, setIsInWishlist] = useState(isWishlisted);
@@ -22,41 +23,51 @@ export default function FoodCard({
     e.preventDefault();
     e.stopPropagation();
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("🔒 You need to be logged in");
+      return;
+    }
+
+    const wasInWishlist = isInWishlist;
+    setIsInWishlist(!wasInWishlist); // Optimistic UI update
+
     try {
-      if (isInWishlist) {
-        const res = await fetch(`https://nham-ey.istad.co/wishlist/${id}`, {
+      if (wasInWishlist && wishlistId) {
+        const res = await fetch(`https://nham-ey.istad.co/wishlist/${wishlistId}`, {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
         });
+
         if (res.ok) {
-          setIsInWishlist(false);
-          toast.success("Removed from wishlist");
-          toggleWishlist && toggleWishlist();
+          toast.success("💔 Removed from wishlist");
+          toggleWishlist && toggleWishlist(id);
         } else {
-          toast.error("Failed to remove item");
+          throw new Error("Failed to remove from wishlist");
         }
       } else {
         const res = await fetch("https://nham-ey.istad.co/wishlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ food_item_id: id }),
         });
+
         if (res.ok) {
-          setIsInWishlist(true);
-          toast.success("Added to wishlist");
+          toast.success("❤️ Added to wishlist");
           toggleWishlist && toggleWishlist();
         } else {
-          toast.error("Failed to add item");
+          throw new Error("Failed to add to wishlist");
         }
       }
     } catch (error) {
       console.error("Error toggling wishlist:", error);
-      toast.error("Something went wrong");
+      toast.error("⚠️ Something went wrong");
+      setIsInWishlist(wasInWishlist); // Revert change if error
     }
   };
 
