@@ -43,7 +43,7 @@ export default function FoodCard({
 
         if (res.ok) {
           toast.success("💔 Removed from wishlist");
-          toggleWishlist && toggleWishlist(id);
+          toggleWishlist && toggleWishlist(id, null); // pass null to remove
         } else {
           throw new Error("Failed to remove from wishlist");
         }
@@ -58,8 +58,9 @@ export default function FoodCard({
         });
 
         if (res.ok) {
+          const result = await res.json(); // get new wishlist ID
           toast.success("❤️ Added to wishlist");
-          toggleWishlist && toggleWishlist();
+          toggleWishlist && toggleWishlist(id, result.id); // pass ID to add
         } else {
           throw new Error("Failed to add to wishlist");
         }
@@ -67,7 +68,7 @@ export default function FoodCard({
     } catch (error) {
       console.error("Error toggling wishlist:", error);
       toast.error("⚠️ Something went wrong");
-      setIsInWishlist(wasInWishlist); // Revert change if error
+      setIsInWishlist(wasInWishlist); // Revert change
     }
   };
 
@@ -81,10 +82,9 @@ export default function FoodCard({
   return (
     <NavLink to={`/food/${id}`}>
       <div className="w-[400px] h-[419px] bg-white dark:bg-gray-600 rounded-xl shadow-sm hover:ring-2 hover:ring-primary hover:scale-101 transition duration-200 relative">
-        {/* Wishlist Button */}
         <button
           onClick={handleWishlistToggle}
-          className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-white"
+          className="absolute top-6 right-6 z-10 p-2 bg-white/80 rounded-full hover:bg-white"
           aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
         >
           <svg
@@ -103,7 +103,6 @@ export default function FoodCard({
           </svg>
         </button>
 
-        {/* Food Image */}
         <div className="relative px-[20px] py-[20px] bg-[#fafaf9] dark:bg-gray-700 rounded-t-xl">
           <img
             className="w-[362px] h-[203px] object-cover rounded-t-lg"
@@ -116,7 +115,6 @@ export default function FoodCard({
           />
         </div>
 
-        {/* Food Details */}
         <div className="p-4">
           <h3 className="text-[24px] font-bold text-[#494949] dark:text-gray-100 line-clamp-1">
             {name || "Unnamed food"}
@@ -148,4 +146,3 @@ export default function FoodCard({
     </NavLink>
   );
 }
-
