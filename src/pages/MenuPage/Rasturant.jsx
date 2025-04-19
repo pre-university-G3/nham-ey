@@ -20,11 +20,9 @@ export default function Rasturant() {
   const base_url = `https://nham-ey.istad.co`;
 
   return (
-    <main className="dark:bg-gray-900 dark:text-white">
-      {/* ... (keep all your existing banner code) ... */}
-
+    <main className="dark:bg-gray-900 dark:text-white py-10">
       <div className="flex justify-center mx-6 my-6">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {Rasturant.map((restaurant) => (
             <RestaurantCard
               key={restaurant.id}

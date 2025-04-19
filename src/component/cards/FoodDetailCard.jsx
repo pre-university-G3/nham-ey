@@ -26,7 +26,7 @@ export default function FoodDetailCard({ food }) {
         </div>
 
         {/* Content */}
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between flex-1">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 dark:text-white font-kh">
               {name}
@@ -54,10 +54,12 @@ export default function FoodDetailCard({ food }) {
           </div>
 
           <div className="mt-6 flex items-center justify-between">
+            {/* Price */}
             <span className="text-2xl text-green-600 dark:text-green-400 font-bold font-kh">
-              ${price}
+              {price}$
             </span>
 
+            {/* Rating */}
             <div className="flex items-center">
               <svg
                 className="w-[26px] h-[26px] text-yellow-400"
@@ -72,9 +74,13 @@ export default function FoodDetailCard({ food }) {
               </p>
             </div>
           </div>
+
+          {/* Wishlist Button */}
+          <button className="mt-4 w-max px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded">
+            Add to wishlist
+          </button>
         </div>
       </div>
     </div>
   );
 }
-

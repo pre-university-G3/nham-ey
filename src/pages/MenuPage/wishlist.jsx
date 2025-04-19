@@ -51,30 +51,42 @@ export default function Wishlist() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-6">My Wishlist</h1>
-      {isLoading ? (
-        <p className="text-center p-[20%]">Loading...</p>
-      ) : wishlistItems.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {wishlistItems.map((item) => (
-            <FoodCard
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              image_url={item.image_url}
-              description={item.description}
-              price={item.price}
-              average_rating={item.average_rating}
-              isWishlisted={true}
-              wishlistId={item.wishlistId}
-              toggleWishlist={removeFromUI}
-            />
-          ))}
-        </div>
-      ) : (
-        <p className="text-center text-gray-500 p-[20%]">Your wishlist is empty.</p>
-      )}
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <div className="container mx-auto px-4 py-10">
+        <h1 className="text-3xl font-bold text-center mb-8 text-zinc-800 dark:text-gray-200">
+          My Wishlist
+        </h1>
+
+        {isLoading ? (
+          <p className="text-center text-gray-600 dark:text-gray-300 p-[20%]">
+            Loading...
+          </p>
+        ) : wishlistItems.length > 0 ? (
+          <div className="flex justify-center mt-10">
+
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4">
+            {wishlistItems.map((item) => (
+              <FoodCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                image_url={item.image_url}
+                description={item.description}
+                price={item.price}
+                average_rating={item.average_rating}
+                isWishlisted={true}
+                wishlistId={item.wishlistId}
+                toggleWishlist={removeFromUI}
+              />
+            ))}
+          </div>
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 dark:text-gray-400 p-[20%]">
+            Your wishlist is empty.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

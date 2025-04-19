@@ -7,7 +7,7 @@ export default function About() {
       <section>
         <div className="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
           <div className="flex flex-wrap justify-center gap-[30px] md:gap-[50px] items-center mx-[20px] md:mx-[100px]">
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left mt-10">
               <h2 className="font-bold text-2xl font-kh text-[36px] bg-gradient-to-r from-[#FF9C63] via-[#F6BA58] to-[#EED84C] bg-clip-text text-transparent">
                 ISTAD PRE-UNIVERSITY G3
               </h2>
@@ -91,18 +91,18 @@ export default function About() {
 </div>
 
 {/* Our Vision */}
-<div className="w-full flex justify-center pb-[60px] md:pb-[130px] pt-[10px]">
-  <div className="flex flex-col md:flex-row-reverse items-center gap-11 max-w-5xl w-full">
+<div className="w-full flex justify-center pb-[60px] md:pb-[130px] px-4">
+  <div className="flex flex-col md:flex-row-reverse items-center gap-6 max-w-5xl w-full">
     <img
       src="/Assets/about2img.webp"
       alt="About Us"
-      className="w-[414px] md:w-[414px] h-auto md:h-[331px] object-contain rounded-lg"
+      className="w-[414px] md:w-[414px] h-auto md:h-[331px] object-contain rounded-lg my-10"
     />
     <div className="bg-white dark:bg-gray-500 p-4 md:p-6 rounded-2xl w-full md:w-[714px]">
       <h2 className="text-[#FBBF24] text-[24px] md:text-[32px] font-kh font-bold">
         Our Vision
       </h2>
-      <p className="text-[#9796A1] dark:text-[#1b1b1c] font-kh mt-2 text-[16px] md:text-[22px]">
+      <p className="text-[#9796A1] dark:text-[#dbdbdf] font-kh mt-2 text-[16px] md:text-[22px]">
         Our vision is to transform how people discover and enjoy food by creating a personalized platform that connects them with diverse, high-quality options. We aim to promote healthy, sustainable choices while celebrating culture and supporting local businesses.
       </p>
     </div>
@@ -123,7 +123,7 @@ export default function About() {
             </div>
           </div>
           <div className="w-full flex justify-center mt-[100px]">
-            <div className="grid sm:grid-cols-2 gap-30 place-items-center">
+            <div className="grid sm:grid-cols-2 gap-20 place-items-center">
               <MentorCard image="/src/images/IMG_8823.jpg" role="Mentor" name="Sin Sreyphea" />
               <MentorCard image="/src/images/IMG_0905 copy.JPG" role="Mentor" name="Srorng Sokcheat" />
             </div>
@@ -140,7 +140,7 @@ export default function About() {
             </div>
           </div>
           <div className="w-full flex justify-center mt-[100px]">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-20 place-items-center">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-20 place-items-center">
               <MentorCard image="/src/images/IMG_0215.JPG" role="Team Leader" name="Min Phanith" />
               <MentorCard image="/src/images/Kea.JPG" role="Sub Team Leader" name="Lim Mouykea" />
               <MentorCard image="/src/images/mingyeck.JPG" role="Member" name="Houng Mingyeak" />
